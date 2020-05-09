@@ -11,7 +11,7 @@ package com.beans;
  */
 public class Job {
     private int jid,vacancies,exper_min, exper_max,cid;
-   String  industry, title,description, salary,country,state,city, apply_deadline,posted_on,job_type;
+   String  industry, title,description, salary,country,state,city, apply_deadline,posted_on,job_type,education_reqd,contact_person,contact_no;
 
     public int getJid() {
         return jid;
@@ -131,6 +131,30 @@ public class Job {
 
     public void setJob_type(String job_type) {
         this.job_type = job_type;
+    }
+
+    public String getEducation_reqd() {
+        return education_reqd;
+    }
+
+    public void setEducation_reqd(String education_reqd) {
+        this.education_reqd = education_reqd;
+    }
+
+    public String getContact_person() {
+        return contact_person;
+    }
+
+    public void setContact_person(String contact_person) {
+        this.contact_person = contact_person;
+    }
+
+    public String getContact_no() {
+        return contact_no;
+    }
+
+    public void setContact_no(String contact_no) {
+        this.contact_no = contact_no;
     }
 
    

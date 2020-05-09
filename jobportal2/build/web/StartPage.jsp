@@ -102,7 +102,8 @@
     <center>
      
      <a href="company/signup.jsp" class="btn btn-info">Want To Hire</a>
-    <button type="button" class="btn btn-info">Get Job</button>
+     <a href="jobseeker/signup.jsp" class="btn btn-info">Get Job</a>
+    
         </center>
 
   </div>

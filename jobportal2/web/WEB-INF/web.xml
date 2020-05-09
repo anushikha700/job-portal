@@ -12,6 +12,10 @@
         <servlet-name>JsController</servlet-name>
         <servlet-class>com.controllers.JsController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>JobApplyController</servlet-name>
+        <servlet-class>com.controllers.JobApplyController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CompanyController</servlet-name>
         <url-pattern>/CompanyController</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>JsController</servlet-name>
         <url-pattern>/JsController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JobApplyController</servlet-name>
+        <url-pattern>/JobApplyController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

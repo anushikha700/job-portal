@@ -3,7 +3,7 @@
     Created on : Apr 18, 2020, 9:18:10 PM
     Author     : anushikha
 --%>
-<jsp:useBean class="com.beans.Jobseeker" id="jobseeker" scope="session"></jsp:useBean>
+<%--<jsp:useBean class="com.beans.Jobseeker" id="jobseeker" scope="session"></jsp:useBean>--%>
 <nav class="navbar navbar-default navbar-static-top m-b-0">
     
             <div class="navbar-header">

@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../Main_template/plugins/images/favicon.png">
-    <title> User Dashboard</title>
+    <title>Dashboard</title>
     <!-- Bootstrap Core CSS -->
     <jsp:include page="base.jsp"></jsp:include>
       

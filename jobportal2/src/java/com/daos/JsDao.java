@@ -67,7 +67,7 @@ public class JsDao {
        if(con!=null) 
        {
            try{
-               String sql= "Update jobseeker set first_name=?,last_name=?,contact=?,dob=?,gender=?,country=?,state=?,city=?,high_school=?,intermediate=?,degree=?,institute=?,experience=?,skills=?,achievements=?,photo=? where jsid=?";
+               String sql= "Update jobseeker set first_name=?,last_name=?,contact=?,dob=?,gender=?,country=?,state=?,city=?,school=?,qualification=?,college=?,course=?,specialization=?,passing_year=?,experience=?,skills=?,achievements=?,photo=? where jsid=?";
                PreparedStatement smt = con.prepareStatement(sql);
                smt.setString(1,jobseeker.getFirst_name());
                smt.setString(2,jobseeker.getLast_name());
@@ -77,20 +77,23 @@ public class JsDao {
                smt.setString(6,jobseeker.getCountry());
                smt.setString(7,jobseeker.getState());
                smt.setString(8,jobseeker.getCity());
-               smt.setString(9,jobseeker.getHigh_school());
-               smt.setString(10,jobseeker.getIntermediate());
-               smt.setString(11,jobseeker.getDegree());
-               smt.setString(12,jobseeker.getInstitute());
-               smt.setString(13,jobseeker.getExperience());
-               smt.setString(14,jobseeker.getSkills());
-               smt.setString(15,jobseeker.getAchievements());
-               smt.setString(16,jobseeker.getPhoto());
-               smt.setInt(17,jobseeker.getJsid());
+               smt.setString(9,jobseeker.getSchool());
+               
+               smt.setString(10,jobseeker.getQualification());
+               smt.setString(11,jobseeker.getCollege());
+               smt.setString(12,jobseeker.getCourse());
+               smt.setString(13,jobseeker.getSpecialization());
+               smt.setString(14,jobseeker.getPassing_year());
+               smt.setString(15,jobseeker.getExperience());
+               smt.setString(16,jobseeker.getSkills());
+               smt.setString(17,jobseeker.getAchievements());
+               smt.setString(18,jobseeker.getPhoto());
+               smt.setInt(19,jobseeker.getJsid());
               
               
         
               System.out.println("fistname"+jobseeker.getFirst_name());
-              System.out.println("high_school"+jobseeker.getHigh_school());
+              System.out.println("high_school"+jobseeker.getSchool());
                
                
                if(smt.executeUpdate()>0)
@@ -187,10 +190,13 @@ public class JsDao {
                 jobseeker.setCountry(rs.getString("country"));
                 jobseeker.setState(rs.getString("state"));
                 jobseeker.setCity(rs.getString("city"));
-                jobseeker.setHigh_school(rs.getString("high_school"));
-                jobseeker.setIntermediate(rs.getString("intermediate"));
-                jobseeker.setInstitute(rs.getString("institute"));
-                jobseeker.setDegree(rs.getString("degree"));
+                jobseeker.setSchool(rs.getString("school"));
+                
+                jobseeker.setCollege(rs.getString("college"));
+                jobseeker.setQualification(rs.getString("qualification"));
+                jobseeker.setCourse(rs.getString("course"));
+                jobseeker.setSpecialization(rs.getString("specialization"));
+                jobseeker.setPassing_year(rs.getString("passing_year"));
                 jobseeker.setExperience(rs.getString("experience"));
                 jobseeker.setSkills(rs.getString("skills"));
                 jobseeker.setAchievements(rs.getString("achievements"));
@@ -236,10 +242,13 @@ public class JsDao {
                 jobseeker.setCountry(rs.getString("country"));
                 jobseeker.setState(rs.getString("state"));
                 jobseeker.setCity(rs.getString("city"));
-                jobseeker.setHigh_school(rs.getString("high_school"));
-                jobseeker.setIntermediate(rs.getString("intermediate"));
-                jobseeker.setInstitute(rs.getString("institute"));
-                jobseeker.setDegree(rs.getString("degree"));
+                jobseeker.setSchool(rs.getString("school"));
+                
+                jobseeker.setCollege(rs.getString("college"));
+                jobseeker.setQualification(rs.getString("qualification"));
+                jobseeker.setCourse(rs.getString("course"));
+                jobseeker.setSpecialization(rs.getString("specialization"));
+                jobseeker.setPassing_year(rs.getString("passing_year"));
                 jobseeker.setExperience(rs.getString("experience"));
                 jobseeker.setSkills(rs.getString("skills"));
                 jobseeker.setAchievements(rs.getString("achievements"));
@@ -261,4 +270,59 @@ public class JsDao {
        
        return jobseeker;
    }  
+      public boolean  PasswordForgot(String email,String newpassword){
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "update jobseeker set password=? where email=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            String encodedPassword = Base64.getEncoder().encodeToString(newpassword.getBytes("UTF-8"));
+            smt.setString(1, encodedPassword);
+            smt.setString(2,email);
+            
+            if(smt.executeUpdate()>0)
+                status=true;
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return status;
+   }
+   
+      public boolean  PasswordChange(int jsid,String curpass,String newpassword){
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "update jobseeker set password=? where jsid=? and password=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            String newencodedPassword = Base64.getEncoder().encodeToString(newpassword.getBytes("UTF-8"));
+            String curPassword = Base64.getEncoder().encodeToString(curpass.getBytes("UTF-8"));
+            System.out.println("new  "+newencodedPassword);
+            System.out.println("cur  "+curPassword);
+            smt.setString(1, newencodedPassword);
+            smt.setInt(2,jsid);
+            smt.setString(3,curPassword);
+            
+            
+            
+            if(smt.executeUpdate()>0)
+                status=true;
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return status;
+   }
 }

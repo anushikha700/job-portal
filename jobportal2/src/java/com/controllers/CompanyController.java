@@ -109,22 +109,60 @@ public class CompanyController extends HttpServlet {
             company.setPassword(encodedPassword);
             com.daos.CompanyDao cd = new com.daos.CompanyDao();
             if (cd.add(company)) {
-                 session.setAttribute("company",company);
+                 session.removeAttribute("company");
                // out.println("account created");
-                response.sendRedirect("company/dashboard.jsp");
+              //  response.sendRedirect("company/dashboard.jsp");
                
                } 
+             company = cd.getBySignupData(email, password);
+            if (company!=null)
+            {
+                session.setAttribute("company", company);
+                response.sendRedirect("company/AddProfile.jsp");
+            }
                  
         }
         
         
-        //To Login
-      /*   if (op != null && op.equalsIgnoreCase("Login")) {
-             System.out.println(" entered Login ");
-           
+         if (op != null && op.equals("add2")) {
+          
+            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+            int cid = Integer.parseInt(request.getParameter("cid"));
             HttpSession session = request.getSession();
+            com.beans.Company company = (com.beans.Company) session.getAttribute("company");
+            String imagePath = "";
+             if (isMultipart)  
+               imagePath = FileUploader.getUploadedPath(getServletContext(), "company/images", request);
+             company.setLogo(imagePath);
+             System.out.println("cid"+cid);
+             System.out.println("img"+imagePath);
            
-        }*/
+            com.daos.CompanyDao cd = new com.daos.CompanyDao();
+            if (cd.add2(company,cid)) {
+                session.setAttribute("company",company);
+             
+                response.sendRedirect("company/dashboard.jsp");
+               } 
+                 
+        }
+         
+         if(op!=null&op.equals("changePass"))
+         {
+             System.out.println("IN CHange Pass");
+             int cid = Integer.parseInt(request.getParameter("cid"));
+             String curpass=request.getParameter("password");
+             String newpass=request.getParameter("newpassword");
+             com.daos.CompanyDao cd = new com.daos.CompanyDao();
+             
+             if(cd.PasswordChange(cid,curpass,newpass)){
+                 
+                 response.sendRedirect("company/ChangePassword.jsp?change=yes&msg=Password Changed Successffully!");
+             }
+             else
+             {
+                response.sendRedirect("company/ChangePassword.jsp?msg=Current Password is wrong!");
+             }
+         } 
         
    
 }

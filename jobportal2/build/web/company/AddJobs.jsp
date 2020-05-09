@@ -134,14 +134,14 @@
                                     <label class="col-md-6">Industry</label>
                                     <label class="col-md-6">Title</label> 
                                     <div class="col-md-6">
-                                        <select id="sel"  class="form-control" >
+                                        <select id="sel"  class="form-control"  required="required">
                                             <option value="">Select Industry</option>
                                         </select>
                                         <input type="hidden" name ="industry" id="bt" />
                                     </div>    
                                     
                                      <div class="col-md-6">
-                                        <input type="text" name="title" placeholder=" Eg: Software Engineer" class="form-control form-control-line" > </div>   
+                                        <input type="text" name="title" placeholder=" Eg: Software Engineer" class="form-control form-control-line" required="required"> </div>   
                                 </div>
                                 
                                 <div class="form-group">
@@ -157,28 +157,33 @@
                                         
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Job Description,Skills Required etc.</label>
+                                    <label class="col-md-12">Job Description</label>
                                     <div class="col-md-12">
-                                        <textarea rows="5" name="description"class="form-control form-control-line"></textarea> </div>
+                                        <textarea rows="5" name="description"class="form-control form-control-line" required="required"></textarea> </div>
                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-md-12">Education and skills required</label>
+                                    <div class="col-md-12">
+                                        <textarea rows="5" name="education_reqd"class="form-control form-control-line" required="required"></textarea> </div>
+                                </div>    
                                 
                                 <div class="form-group">
                                     <label class="col-md-6">Vacancy</label>
                                     <label class="col-md-6">Annual CTC</label>
                                     <div class="col-md-6">
-                                        <input type="number" name="vacancies" placeholder="Eg:5" class="form-control form-control-line" > </div>
+                                        <input type="number" name="vacancies" placeholder="Eg:5" class="form-control form-control-line"required="required" > </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="salary" placeholder="Eg: 5,000,000" class="form-control form-control-line" > </div>    
+                                        <input type="text" name="salary" placeholder="Eg: INR 5,000,000 (Optional)" class="form-control form-control-line" > </div>    
                                 </div>
 
                                 
                                 <div class="form-group">
                                     <label class="col-md-12">Experience Required(in Years)</label>
                                     <div class="col-md-6">
-                                        <input type="number" name="exper_min" placeholder="Minimum" class="form-control form-control-line" > </div>
+                                        <input type="number" name="exper_min" placeholder="Minimum" class="form-control form-control-line"required="required" > </div>
                                     
                                      <div class="col-md-6">
-                                        <input type="number" name="exper_max" placeholder="Maximum" class="form-control form-control-line" > </div>
+                                        <input type="number" name="exper_max" placeholder="Maximum" class="form-control form-control-line" required="required"> </div>
                                     
                                 </div>
                                 <div class="form-group">
@@ -190,7 +195,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <select class=" states form-control"  name="state" id="stateId">
+                                        <select class=" states form-control"  name="state" id="stateId" required="required">
                                              <option value="">State</option>
                                         </select>
                                     </div>
@@ -205,9 +210,18 @@
                                     <label class="col-md-12">Last Date To Apply</label>
                                     
                                     <div class="col-md-6">
-                                        <input type="date" name="apply_deadline" class="form-control form-control-line" > </div>
+                                        <input type="date" name="apply_deadline" class="form-control form-control-line" required="required"> </div>
                                         
                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-md-6">Contact Person</label>
+                                    <label class="col-md-6">Contact Number</label>
+                                    
+                                    <div class="col-md-6">
+                                        <input type="text" name="contact_person" class="form-control form-control-line" required="required"> </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="contact_no" class="form-control form-control-line" required="required"> </div>    
+                                </div>    
         
                             
                                     

@@ -11,7 +11,7 @@ package com.beans;
  */
 public class Company {
     private int cid;
-    String cname, email, password, logo, country,state,city,pincode,address;
+    String cname, email, password, logo, country,state,city,pincode,address,about_us,contact;
 
     public int getCid() {
         return cid;
@@ -92,6 +92,22 @@ public class Company {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getAbout_us() {
+        return about_us;
+    }
+
+    public void setAbout_us(String about_us) {
+        this.about_us = about_us;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
    

@@ -1,0 +1,83 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.daos;
+
+import com.beans.JobApply;
+import com.pool.ConnectionPool;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+/**
+ *
+ * @author anushikha
+ */
+public class JobApplyDao {
+     public boolean upload_resume(JobApply jobapply)
+    {
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null) 
+       {
+           try{
+               
+               String sql= "Insert into job_apply(jid,jsid,resume)values(?,?,?)";
+               PreparedStatement smt = con.prepareStatement(sql);
+               smt.setInt(1, jobapply.getJid());
+               smt.setInt(2, jobapply.getJsid());
+              
+               smt.setString(3, jobapply.getResume());
+              
+               System.out.println("jid dao"+jobapply.getJid());
+               System.out.println("jsid dao"+jobapply.getJsid());
+              System.out.println("resume dao"+jobapply.getResume());
+               
+               
+               if(smt.executeUpdate()>0)
+               {
+                   status=true;
+                   
+               }
+               
+               
+               smt.close();
+               cp.putConnection(con);
+               
+           }
+           catch(Exception e){
+            System.out.println("Database Error :"+ e.getMessage());
+        }
+
+       }
+       return status;
+    }
+     public boolean  ifApplied(int jid,int jsid){
+       boolean status = false;
+        ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select * from job_apply where jid=? and jsid=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, jid);
+            smt.setInt(2, jsid);
+            ResultSet rs= smt.executeQuery();
+            if(rs.next()){
+                status=true;
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+       return status;
+   }   
+}

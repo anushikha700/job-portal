@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.daos;
-
+import com.beans.Company;
 import com.beans.Job;
 import com.pool.ConnectionPool;
 import java.sql.Connection;
@@ -26,7 +26,7 @@ public class JobDao {
        if(con!=null) 
        {
            try{
-               String sql= "Insert into job(title,description,vacancies,salary,country,state,city,apply_deadline,exper_min,exper_max,cid,industry,posted_on)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+               String sql= "Insert into job(title,description,vacancies,salary,country,state,city,apply_deadline,exper_min,exper_max,cid,industry,posted_on,education_reqd,contact_person,contact_no)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                PreparedStatement smt = con.prepareStatement(sql);
             
                smt.setString(1, job.getTitle());
@@ -44,6 +44,9 @@ public class JobDao {
                smt.setInt(11, job.getCid());
                smt.setString(12, job.getIndustry());
                smt.setString(13, job.getPosted_on());
+              smt.setString(14, job.getEducation_reqd()); 
+              smt.setString(15,job.getContact_person());
+              smt.setString(16, job.getContact_no());
                
               System.out.println("Title"+job.getTitle());
 
@@ -108,6 +111,7 @@ public class JobDao {
                 job =new Job();
   
                 job.setJid(rs.getInt("jid"));
+                job.setCid(rs.getInt("cid"));
                 job.setIndustry(rs.getString("industry"));
                 job.setTitle(rs.getString("title"));
                 job.setDescription(rs.getString("description"));
@@ -120,6 +124,9 @@ public class JobDao {
                 job.setExper_min(rs.getInt("exper_min"));
                 job.setExper_max(rs.getInt("exper_max"));
                 job.setPosted_on(rs.getString("posted_on"));
+                job.setEducation_reqd(rs.getString("education_reqd"));
+                job.setContact_person(rs.getString("contact_person"));
+                job.setContact_no(rs.getString("contact_no"));
                 
                 
                 
@@ -249,7 +256,7 @@ public class JobDao {
        Connection con = cp.getConnection();
        if(con!=null){
         try{
-            String sql = "update Job set industry=?,title=?,description=?,vacancies=?,salary=?,country=?,state=?,city=?,apply_deadline=?,exper_min=?, exper_max=? where jid=?";
+            String sql = "update Job set industry=?,title=?,description=?,vacancies=?,salary=?,country=?,state=?,city=?,apply_deadline=?,exper_min=?,exper_max=?,education_reqd=?,contact_person=?,contact_no=?  where jid=?";
             PreparedStatement smt = con.prepareStatement(sql);
             smt.setString(1, job.getIndustry());
             smt.setString(2, job.getTitle());
@@ -262,7 +269,11 @@ public class JobDao {
             smt.setString(9, job.getApply_deadline());
             smt.setInt(10, job.getExper_min());
             smt.setInt(11, job.getExper_max());
-             smt.setInt(12, job.getJid());
+            smt.setString(12, job.getEducation_reqd()); 
+            smt.setString(13,job.getContact_person());
+            smt.setString(14, job.getContact_no());
+            smt.setInt(15, job.getJid());
+             
             if(smt.executeUpdate()>0)
                 status=true;
             smt.close();
@@ -274,7 +285,7 @@ public class JobDao {
        
     return status;
    }
-   
+   //TO get company details while login
     public ArrayList<Job>  getByCompany(int cid){
     
        ArrayList<Job> jobs =new ArrayList<Job>();
@@ -302,6 +313,9 @@ public class JobDao {
                 job.setExper_min(rs.getInt("exper_min"));
                 job.setExper_max(rs.getInt("exper_max"));
                 job.setPosted_on(rs.getString("posted_on"));
+                job.setEducation_reqd(rs.getString("education_reqd"));
+                job.setContact_person(rs.getString("contact_person"));
+                job.setContact_no(rs.getString("contact_no"));
                 
                 jobs.add(job);
             }
@@ -343,6 +357,112 @@ public class JobDao {
     return total;
    }
 
-    
+    //TO get job details in Search Jobs
+     public ArrayList<Job>  getJobsByKeyword(String keyword){
+        
+       ArrayList<Job> jobs =new ArrayList<Job>();
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select jid,cname,title,industry,exper_min,exper_max,description,vacancies,salary,job.country,job.state,job.city,apply_deadline,job.cid,posted_on,education_reqd,contact_person,contact_no from job,company where job.cid=company.cid and(company.cname like ? or industry like ? or title like ?)";
+            PreparedStatement smt = con.prepareStatement(sql);
+            
+             smt.setString(1,"%"+keyword+"%");
+            smt.setString(2,"%"+keyword+"%");
+            smt.setString(3,"%"+keyword+"%");
+           ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+                Job  job =new Job();
+                job.setJid(rs.getInt("jid"));
+                job.setIndustry(rs.getString("industry"));
+                job.setTitle(rs.getString("title"));
+                job.setDescription(rs.getString("description"));
+                job.setVacancies(rs.getInt("vacancies"));
+                job.setSalary(rs.getString("salary"));
+                job.setCountry(rs.getString("country"));
+                job.setState(rs.getString("state"));
+                job.setCity(rs.getString("city"));
+                job.setApply_deadline(rs.getString("apply_deadline"));
+                job.setCid(rs.getInt("cid"));
+                job.setExper_min(rs.getInt("exper_min"));
+                job.setExper_max(rs.getInt("exper_max"));
+                job.setPosted_on(rs.getString("posted_on"));
+                job.setEducation_reqd(rs.getString("education_reqd"));
+                job.setContact_person(rs.getString("contact_person"));
+                job.setContact_no(rs.getString("contact_no"));
+                jobs.add(job);
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return jobs;
+   }
+     
+     //To get company name in Search Jobs
+     public String getCompanyName(int cid )
+     {
+         String cname = null;
+        
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            Company company=new Company();
+            String sql = "select cname from company,job where job.cid=company.cid and job.cid=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1,cid);
+           
+           // System.out.println("getcid: "+job.getCid());
+            ResultSet rs= smt.executeQuery();
+            if(rs.next()){
+                cname = rs.getString(1);
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+         
+       return cname;  
+     }
    
+     //To get Company Logo in Search Job
+      public String getCompanyLogo(int cid )
+     {
+         String logo=null;
+        
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            Company company=new Company();
+            String sql = "select logo from company,job where job.cid=company.cid and job.cid=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1,cid);
+           
+           // System.out.println("getcid: "+job.getCid());
+            ResultSet rs= smt.executeQuery();
+            if(rs.next()){
+                logo = rs.getString(1);
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+         
+       return logo;  
+     }
+   
+     
 }

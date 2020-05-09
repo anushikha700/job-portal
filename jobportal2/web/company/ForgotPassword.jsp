@@ -3,6 +3,7 @@
     Created on : Apr 9, 2020, 6:19:10 PM
     Author     : anushikha
 --%>
+<%@page import="org.apache.commons.lang.RandomStringUtils"%>
 <%@page import="com.utilities.EmailSender"%>
 <%@page import="com.utilities.SmsSender"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,8 +28,27 @@
 	</script>
 	<!-- //Meta tag Keywords -->
 	<!--/Style-CSS -->
-	<link rel="stylesheet" href="assets/login_template/css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="../login_template/css/style.css" type="text/css" media="all" />
 	<!--//Style-CSS -->
+        <script type="text/javascript">
+ 
+  function varifyEmailid(x, y) {
+                ajax = new XMLHttpRequest();
+
+                ajax.open("GET", "../CompanyController?op=varify2&email=" + x, true);
+ 
+               ajax.send();
+
+                ajax.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+ 
+                       y.innerHTML = this.responseText;
+                    }
+                };
+
+            }
+   
+   </script>
 </head>
 
 <body>
@@ -58,11 +78,12 @@
                                       
                                                  </span>
 
-					<form id="resetForm" action="reset_password"method="post" class="signin-form">
+					<form  method="post" class="signin-form">
 							
 							<div class="form-input">
 								<label>Enter a valid Email</label>
-								<input type="email" name="email" placeholder="Email" required="required"  autocomplete="off" onblur="varifyEmailid(this.value, s1);"/>
+                                                                <input type="text" name="recipents" placeholder="Email " class="form-control" pattern="^(\s?[^\s,]+@[^\s,]+\.[^\s,]+\s?,)*(\s?[^\s,]+@[^\s,]+\.[^\s,]+)$" onblur="varifyEmailid(this.value, s1);"/>
+								
 							</div>
 							
 							
@@ -71,51 +92,19 @@
 					</form>
 					<div class="copy-right text-center">
 						<p> To Login
-								<a href="login.jsp" target="_blank">Click Here</a></p>
+								<a href="login.jsp">Click Here</a></p>
 					 </div>
+                                                <span id="s2">
+                                                    
+                                                </span>
 				</div>
 				
 			</div>
 			
 		</div>
 	</section>	<!-- //login-section -->
-        <script type="text/javascript">
- 
-  function varifyEmailid(x, y) {
-                ajax = new XMLHttpRequest();
-
-                ajax.open("GET", "../CompanyController?op=varify2&email=" + x, true);
- 
-               ajax.send();
-
-                ajax.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
- 
-                       y.innerHTML = this.responseText;
-                    }
-                };
-
-            }
-    $(document).ready(function() {
-        $("#resetForm").validate({
-            rules: {
-                email: {
-                    required: true,
-                    email: true
-                }      
-            },
-             
-            messages: {
-                email: {
-                    required: "Please enter email",
-                    email: "Please enter a valid email address"
-                }
-            }
-        });
- 
-    });
-</script>
- <% if (request.getParameter("submit") != null) {
+        
+   <% if (request.getParameter("submit") != null) {
             String host;
             String port;
             String user;
@@ -126,29 +115,31 @@
             port = context.getInitParameter("port");
             user = context.getInitParameter("user");
             pass = context.getInitParameter("pass");
-
-            String recipient = request.getParameter("email");
-            String subject = "Your Password has been reset";
- 
-            CustomerServices customerServices = new CustomerServices(request, response);
-            String newPassword = customerServices.resetCustomerPassword(recipient);
- 
-            String content = "Hi, this is your new password: " + newPassword;
-            content += "\nNote: for security reason, "
+            System.out.println("user "+user);
+            
+            String newpassword=RandomStringUtils.randomAlphanumeric(10);
+            System.out.println("newPass "+newpassword);
+            String email=request.getParameter("recipents");
+            com.daos.CompanyDao cd = new com.daos.CompanyDao();
+            cd.PasswordForgot(email,newpassword);
+            String recipients[] = request.getParameter("recipents").split(",");
+            String subject ="Your Job Portal account password has been reset" ;
+            String message = "Hi, This is your new password: "+newpassword+"\nNote: for security reason, "
                 + "you must change your password after logging in.";
- 
-            String message = "";
-            
-            
 
-           if(EmailUtility.sendEmail(host, port, email, name, pass,
-                    recipient, subject, content))
-            message = "Your password has been reset. Please check your e-mail.";
+
+            if(EmailSender.sendEmail(host, port, user, pass, recipients, subject, message))
+            { 
+                out.print("<b>Mail Sent Successfully</b>");
+            } 
+                    
             else
-                    out.println("<font color='red'>Mail could not be sent !</font>");
+                    out.print("<font color='red'>Mail could not be sent !!</font>");
            
         }%>
 
+
+ 
 </body>
  </html>
    

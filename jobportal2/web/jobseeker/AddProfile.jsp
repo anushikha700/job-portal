@@ -17,10 +17,50 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../Main_template/plugins/images/favicon.png">
     <title>Dashboard|Complete Profile</title>
     <!-- Bootstrap Core CSS -->
+   
     <jsp:include page="base.jsp"></jsp:include>
-     <script src="//geodata.solutions/includes/countrystatecity.js"></script>
-     
     
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#q").change(function() {
+                if ($(this).val() == "1" ||$(this).val()=="2" ||$(this).val()=="3") {
+                    $("#q1").show();
+                    $("#q2").show();
+                    
+    
+                } else {
+                    $("#q1").hide();
+                     $("#q2").hide();
+                    
+                    
+                }
+                if($(this).val()=="4"){
+                    $("#q4").show();
+                    
+                    
+   
+                }
+                else
+                {
+                     $("#q4").hide();
+                     
+     
+                }    
+                 if($(this).val()=="5"){
+                    $("#q5").show();
+                }
+                else
+                {
+                     $("#q5").hide();
+      
+                }    
+            });
+
+            $("#q").trigger("change");
+        });
+    </script>
 
 </head>
 
@@ -101,9 +141,7 @@
                         <h4 class="page-title">Complete Your Profile</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank"
-                            class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade
-                            to Pro</a>
+                        
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
                             <li class="active">Add Details</li>
@@ -114,8 +152,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="white-box">
-                            <h3 class="box-title">Add Details</h3>
+                            <h3 class="box-title"></h3>
+                            
                             <h3>Fill Basic Details</h3>
+                            
+                            
                         <jsp:useBean class="com.beans.Jobseeker" id="jobseeker" scope="session"></jsp:useBean>
 
 
@@ -176,30 +217,90 @@
                                 <div class="col-md-6">
                                     <input type="tel" name="contact" class="form-control form-control-line" required="required" > </div>   
                             </div>
-
+                                <br>
+                               
+                            <br>
+                            <h3>Fill Education Details</h3>
                             
-                            
-                            
+                            <br>
                             
                             <div class="form-group">
-                                <label class="col-md-6">High School </label>
-                                <label class="col-md-6">Intermediate School</label> 
-                                <div class="col-md-6">
-                                    <input type="text" name="high_school" class="form-control form-control-line" > </div> 
-                                <div class="col-md-6">
-                                    <input type="text" name="intermediate" class="form-control form-control-line" > </div>   
+                               <label  for="q" class="col-md-4">Qualification level</label> 
+                               
+                                 
+                                 
+                                 
+                               <div class="col-md-6">
+                                    <select name="qualification" class="form-control form-control-line" id="q" >
+                                        <option value="0">Select</option>
+                                        <option value="1">Doctrate/Phd</option>
+                                        <option value="2">Master/Post-Graduation</option>
+                                        <option value="3">Graduation/Diploma</option>
+                                        <option value="4">12th</option>
+                                        <option value="5">10th</option>
+                                        <option value="6">Below 10th</option>
+                                    </select>   
+                                </div> 
+                               
+ 
+                                
+                            </div>    
+                            <br>
+                            
+                            <div class="form-group" id="q1">
+                                <label for="q1" id="q1" class="col-md-6">Course</label>
+                                <label for="q1"class="col-md-6">Specialization</label>
+                                <div class="col-md-6" id="q1">
+                                    <input type="text" name="course" class="form-control form-control-line" > </div>
+                                <div class="col-md-6" id="q1">
+                                    <input type="text" name="specialization" class="form-control form-control-line" > </div>  
+                                
+                            </div>
+                            
+                             <div class="form-group" id="q2">
+                                
+                               
+                                <label for="q2"class="col-md-6">University/College</label>
+                                <label for="q2"class="col-md-6">Passing Year</label>
+                                
+                                <div class="col-md-6" id="q2">
+                                    <input type="text" name="college" class="form-control form-control-line" > </div> 
+                                <div class="col-md-6" id="q2">
+                                    <input type="text" name="passing_year" class="form-control form-control-line" > </div>    
+                            </div>
+                            
+                         
+
+                            
+                            
+                            
+                            
+                            <div class="form-group" id="q4">
+                                <label for="q4"class="col-md-6">12th School </label>
+                                <label for="q4" class="col-md-6">Passing Year</label> 
+                                <div class="col-md-6" id="q4">
+                                    <input type="text" name="school" class="form-control form-control-line"  > </div> 
+                                <div class="col-md-6" id="q4">
+                                    <input type="text" name="passing_year" class="form-control form-control-line" > </div>   
+                            </div>
+                            
+                            <div class="form-group" id="q5">
+                                <label for="q5" class="col-md-6">10th School </label>
+                                <label for="q5" class="col-md-6">Passing Year</label> 
+                                <div class="col-md-6" id="q5">
+                                    <input type="text" name="school" class="form-control form-control-line" > </div> 
+                                <div class="col-md-6" id="q5">
+                                    <input type="text" name="passing_year" class="form-control form-control-line" > </div>   
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-md-6">Degree/Diploma</label>
-                                <label class="col-md-6">Institute</label>
-
-
-                                <div class="col-md-6">
-                                    <input type="text" name="degree" class="form-control form-control-line" > </div> 
-                                <div class="col-md-6">
-                                    <input type="text" name="institute" class="form-control form-control-line" > </div>
-                            </div>
+                            <br>
+                              
+                            <br>
+                            <h3>Fill Professional Details</h3>
+                           
+                            <br>    
+                            
+                            
 
                             <div class="form-group">
                                 <label class="col-md-12">Work Experience</label>

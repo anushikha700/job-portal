@@ -27,14 +27,16 @@
                     <li>
                         <a href="#" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>View Candidates Applied</a>
                     </li>
+                     <li>
+                        <a href="ChangePassword.jsp" class="waves-effect"><i class="fa fa-gear fa-fw" aria-hidden="true"></i>Change Password</a>
+                    </li>
+
                     <li>
                         <a href="signout.jsp" class="waves-effect"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>Sign-Out</a>
                     </li>
 
                 </ul>
-                <div class="center p-20">
-                     <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger btn-block waves-effect waves-light">Upgrade to Pro</a>
-                 </div>
+                
             </div>
             
         </div>

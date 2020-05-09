@@ -143,7 +143,8 @@ public final class StartPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <center>\n");
       out.write("     \n");
       out.write("     <a href=\"company/signup.jsp\" class=\"btn btn-info\">Want To Hire</a>\n");
-      out.write("    <button type=\"button\" class=\"btn btn-info\">Get Job</button>\n");
+      out.write("     <a href=\"jobseeker/signup.jsp\" class=\"btn btn-info\">Get Job</a>\n");
+      out.write("    \n");
       out.write("        </center>\n");
       out.write("\n");
       out.write("  </div>\n");

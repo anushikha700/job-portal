@@ -17,24 +17,21 @@
                         <a href="Profile.jsp" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
                     </li>
                     <li>
-                        <a href="AddJobs.jsp" class="waves-effect"><i class="fa  fa-pencil-square-o fa-fw" aria-hidden="true"></i>Post New Job</a>
+                        <a href="SearchJobs.jsp" class="waves-effect"><i class="fa  fa-search fa-fw" aria-hidden="true"></i>Search Jobs</a>
                     </li>
                     <li>
-                        <a href="ViewJobs.jsp" class="waves-effect"><i class="fa fa-bars fa-fw" aria-hidden="true"></i>View All Jobs</a>
+                        <a href="#" class="waves-effect"><i class="fa fa-bars fa-fw" aria-hidden="true"></i>View Jobs Applied In</a>
                     </li>
                     
                    
                     <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>View Candidates Applied</a>
+                        <a href="ChangePassword.jsp" class="waves-effect"><i class="fa fa-gear fa-fw" aria-hidden="true"></i>Change Password</a>
                     </li>
                     <li>
                         <a href="signout.jsp" class="waves-effect"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>Sign-Out</a>
                     </li>
 
                 </ul>
-                <div class="center p-20">
-                     <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger btn-block waves-effect waves-light">Upgrade to Pro</a>
-                 </div>
-            </div>
+               </div>
             
         </div>

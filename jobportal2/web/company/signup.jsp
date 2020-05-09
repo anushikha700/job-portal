@@ -89,7 +89,7 @@
 							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est natus facere aperiam!
 								Tenetur maiores dolore a quod pariatur ut voluptates quae saepe ea quasi laudantium,
 								iste molestias inventore fuga assumenda.</p>
-							<a href="signup.jsp" class="read-more-1 btn">Get Started</a>
+							<a href="../StartPage.jsp" class="read-more-1 btn">Get Started</a>
 						</div>
 					
 					</div>
@@ -129,7 +129,7 @@
 					</form>
 					<div class="copy-right text-center">
 						<p>© Already have an account?
-								<a href="login.jsp" target="_blank">Login</a></p>
+								<a href="login.jsp">Login</a></p>
 					 </div>
 				</div>
 				

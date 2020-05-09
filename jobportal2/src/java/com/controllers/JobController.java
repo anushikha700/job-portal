@@ -70,7 +70,10 @@ public class JobController extends HttpServlet {
             int exper_max= Integer.parseInt(request.getParameter("exper_max"));    
             int cid= Integer.parseInt(request.getParameter("cid"));
             String posted_on= request.getParameter("posted_on");
-            System.out.println("posted_on: "+posted_on);
+            String education_reqd= request.getParameter("education_reqd");
+            String contact_person= request.getParameter("contact_person");
+            String contact_no= request.getParameter("contact_no");
+            
             
             
                 
@@ -81,7 +84,14 @@ public class JobController extends HttpServlet {
             job.setTitle(title);
             job.setDescription(description);
             job.setVacancies(vacancies);
-            job.setSalary(salary);
+            if (salary != null && salary.length() != 0){
+              job.setSalary(salary);  
+            }
+            else
+            {
+                job.setSalary("Not Disclosed");
+            }
+            
             job.setCountry(country);
             job.setState(state);
             job.setCity(city);
@@ -90,6 +100,9 @@ public class JobController extends HttpServlet {
             job.setExper_max(exper_max);
             job.setCid(cid);
             job.setPosted_on(posted_on);
+            job.setEducation_reqd(education_reqd);
+            job.setContact_person(contact_person);
+            job.setContact_no(contact_no);
            
             
             
@@ -115,7 +128,10 @@ public class JobController extends HttpServlet {
             String city= request.getParameter("city");
             String apply_deadline= request.getParameter("apply_deadline");
             int exper_min= Integer.parseInt(request.getParameter("exper_min"));
-            int exper_max= Integer.parseInt(request.getParameter("exper_max"));    
+            int exper_max= Integer.parseInt(request.getParameter("exper_max")); 
+            String education_reqd= request.getParameter("education_reqd");
+            String contact_person= request.getParameter("contact_person");
+            String contact_no= request.getParameter("contact_no");
             
                 
             HttpSession session = request.getSession();
@@ -132,7 +148,9 @@ public class JobController extends HttpServlet {
             job.setApply_deadline(apply_deadline);
             job.setExper_min(exper_min);
             job.setExper_max(exper_max);
-           
+            job.setEducation_reqd(education_reqd);
+            job.setContact_person(contact_person);
+            job.setContact_no(contact_no);
             
             
             

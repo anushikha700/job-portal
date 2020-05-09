@@ -5,6 +5,7 @@
  */
 package com.daos;
 import com.beans.Company;
+
 import com.pool.ConnectionPool;
 import com.sun.org.apache.regexp.internal.REProgram;
 import java.sql.*;
@@ -59,6 +60,54 @@ public class CompanyDao {
        }
        return status;
     }
+    
+    public boolean add2(Company company,int cid)
+    {
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null) 
+       {
+           try{
+               String sql= "Update company set country=?,state=?,city=?,address=?,pincode=?,contact=?,about_us=?,logo=? where cid=?";
+               PreparedStatement smt = con.prepareStatement(sql);
+               smt.setString(1,company.getCountry());
+               smt.setString(2,company.getState());
+               smt.setString(3,company.getCity());
+               smt.setString(4,company.getAddress());
+               smt.setString(5,company.getPincode());
+               smt.setString(6,company.getContact());
+               smt.setString(7,company.getAbout_us());
+               smt.setString(8,company.getLogo());
+               smt.setInt(9,company.getCid());
+              
+
+              System.out.println("company :"+company.getCity());
+   
+               if(smt.executeUpdate()>0)
+               {
+                   status=true;
+                   
+               }
+               
+               
+               smt.close();
+               cp.putConnection(con);
+               
+           }
+           catch(Exception e){
+            System.out.println("Database Error :"+ e.getMessage());
+        }
+
+       }
+       return status;
+    }
+
+    
+    
+    
+    
     
     
      public boolean  remove(int id){
@@ -415,5 +464,100 @@ public class CompanyDao {
     return company;
    }
 
+    public Company  getBySignupData(String email,String password){
+      Company company=null;
+        ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select * from company where email=? and password=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes("UTF-8"));
+            smt.setString(1, email);
+            smt.setString(2, encodedPassword);
+            ResultSet rs= smt.executeQuery();
+            if(rs.next()){
+                company=new Company();
+                company.setCid(rs.getInt("cid"));
+                company.setEmail(rs.getString("email"));
+                company.setPassword(rs.getString("password"));
+                company.setCname(rs.getString("cname"));
+                company.setCountry(rs.getString("country"));
+                company.setState(rs.getString("state"));
+                company.setCity(rs.getString("city"));
+                company.setContact(rs.getString("contact"));
+                company.setAddress(rs.getString("address"));
+                company.setPincode(rs.getString("pincode"));
+                company.setAbout_us(rs.getString("about_us"));
+                company.setLogo(rs.getString("logo"));
+
+                System.out.println("dao cname: "+rs.getString("cname"));
+                                        }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("DBError :"+e.getMessage());
+        }
+       }
+       
+       return company;
+   }  
+
+    public boolean  PasswordForgot(String email,String newpassword){
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "update company set password=? where email=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            String encodedPassword = Base64.getEncoder().encodeToString(newpassword.getBytes("UTF-8"));
+            smt.setString(1, encodedPassword);
+            smt.setString(2,email);
+            
+            if(smt.executeUpdate()>0)
+                status=true;
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return status;
+   }
+    
+     public boolean  PasswordChange(int cid,String curpass,String newpassword){
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "update company set password=? where cid=? and password=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            String newencodedPassword = Base64.getEncoder().encodeToString(newpassword.getBytes("UTF-8"));
+            String curPassword = Base64.getEncoder().encodeToString(curpass.getBytes("UTF-8"));
+            System.out.println("new  "+newencodedPassword);
+            System.out.println("cur  "+curPassword);
+            smt.setString(1, newencodedPassword);
+            smt.setInt(2,cid);
+            smt.setString(3,curPassword);
+            
+            
+            
+            if(smt.executeUpdate()>0)
+                status=true;
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return status;
+   }
     
 }

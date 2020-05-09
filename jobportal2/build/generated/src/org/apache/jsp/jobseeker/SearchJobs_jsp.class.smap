@@ -1,0 +1,18 @@
+SMAP
+SearchJobs_jsp.java
+JSP
+*S JSP
+*F
++ 0 SearchJobs.jsp
+jobseeker/SearchJobs.jsp
+*L
+5,31:44
+36:75,3
+37,33:78
+70:111,3
+71,3:114
+74:117,3
+75,41:120
+116:161,3
+117,22:164
+*E

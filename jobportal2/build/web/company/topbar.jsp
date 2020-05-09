@@ -39,7 +39,7 @@
                         </form>
                     </li>
                     <li>
-                        <a class="profile-pic" href="#"> <img src="../Main_template/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
+                        <a class="profile-pic" href="#"> <img src="../${company.logo}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">${company.cname}</b></a>
                     </li>
                 </ul>
             </div>

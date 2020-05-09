@@ -33,6 +33,7 @@ public class JsController extends HttpServlet {
         response.setContentType("text/html");
         String op = request.getParameter("op");
         
+        //Verify email at signup
         if (op != null && op.equals("varify1")) {
             String email = request.getParameter("email");
             if (email == null || email.equals("")) {
@@ -48,7 +49,7 @@ public class JsController extends HttpServlet {
                 
                 
         }
-        
+        //verify username at Login
          if (op != null && op.equals("varify2")) {
             String username = request.getParameter("username");
             if (username == null || username.equals("")) {
@@ -61,6 +62,22 @@ public class JsController extends HttpServlet {
                
              else 
                     out.println("<font color='blue' size='4' face='corbel'>Username available </font>");
+                
+                
+        }
+         //Verify Email when forgot password
+          if (op != null && op.equals("varify3")) {
+            String email = request.getParameter("email");
+            if (email == null || email.equals("")) {
+                out.print("<b> Plese fillout the email</b>");
+                return;
+            } 
+            JsDao js = new JsDao();
+             if (js.isEmailExist(email))  
+                    out.println("<font color='Blue' size='4' face='corbel'> Click Submit</font>");
+               
+             else 
+                    out.println("<font color='red' size='4' face='corbel'> Email not registered! Create new Account</font>");
                 
                 
         }
@@ -132,7 +149,24 @@ public class JsController extends HttpServlet {
                } 
                  
         }
-
+        
+         if(op!=null&op.equals("changePass"))
+         {
+             System.out.println("IN CHange Pass");
+             int jsid = Integer.parseInt(request.getParameter("jsid"));
+             String curpass=request.getParameter("password");
+             String newpass=request.getParameter("newpassword");
+             com.daos.JsDao js = new com.daos.JsDao();
+             
+             if(js.PasswordChange(jsid,curpass,newpass)){
+                 
+                 response.sendRedirect("jobseeker/ChangePassword.jsp?change=yes&msg=Password Changed Successffully!");
+             }
+             else
+             {
+                response.sendRedirect("jobseeker/ChangePassword.jsp?msg=Current Password is wrong!");
+             }
+         }
         
                
    

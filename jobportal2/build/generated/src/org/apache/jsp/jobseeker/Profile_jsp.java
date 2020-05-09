@@ -3,6 +3,8 @@ package org.apache.jsp.jobseeker;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import com.beans.Jobseeker;
+import com.daos.JsDao;
 
 public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -42,6 +44,8 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html lang=\"en\">\n");
       out.write("\n");
@@ -54,24 +58,38 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"../Main_template/plugins/images/favicon.png\">\n");
       out.write("    <title>Dashboard|Profile</title>\n");
       out.write("    <!-- Bootstrap Core CSS -->\n");
-      out.write("    <link href=\"../Main_template/html/bootstrap/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n");
-      out.write("    <!-- Menu CSS -->\n");
-      out.write("    <link href=\"../Main_template/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css\" rel=\"stylesheet\">\n");
-      out.write("    <!-- animation CSS -->\n");
-      out.write("    <link href=\"../Main_template/html/css/animate.css\" rel=\"stylesheet\">\n");
-      out.write("    <!-- Custom CSS -->\n");
-      out.write("    <link href=\"../Main_template/html/css/style.css\" rel=\"stylesheet\">\n");
-      out.write("    <!-- color CSS -->\n");
-      out.write("    <link href=\"../Main_template/html/css/colors/default.css\" id=\"theme\" rel=\"stylesheet\">\n");
-      out.write("    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->\n");
-      out.write("    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->\n");
-      out.write("    <!--[if lt IE 9]>\n");
-      out.write("    <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>\n");
-      out.write("    <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"></script>\n");
-      out.write("<![endif]-->\n");
+      out.write("    ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "base.jsp", out, false);
+      out.write("\n");
+      out.write("    <style>\n");
+      out.write("        \n");
+      out.write("        .l1{\n");
+      out.write("            font-family:helvetica;\n");
+      out.write("            color:#767676;\n");
+      out.write("            margin:15px;\n");
+      out.write("            font-size:17px ;\n");
+      out.write("            display: inline-block;\n");
+      out.write("            font-weight: bold;\n");
+      out.write("        } \n");
+      out.write("         \n");
+      out.write("        .p1 {\n");
+      out.write("    display: inline-block; /* show on the same line */\n");
+      out.write("    margin: 15px; /* small gap on the right of each header */\n");
+      out.write("    font-size:15px ;\n");
+      out.write("  }\n");
+      out.write("    </style>\n");
       out.write("</head>\n");
       out.write("\n");
       out.write("<body class=\"fix-header\">\n");
+      out.write("    ");
+
+        if(session.getAttribute("jobseeker")==null)
+        {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+        
+      out.write("\n");
       out.write("    <!-- ============================================================== -->\n");
       out.write("    <!-- Preloader -->\n");
       out.write("    <!-- ============================================================== -->\n");
@@ -84,6 +102,16 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <!-- Wrapper -->\n");
       out.write("    <!-- ============================================================== -->\n");
       out.write("    <div id=\"wrapper\">\n");
+      out.write("        ");
+      com.beans.Jobseeker jobseeker = null;
+      synchronized (session) {
+        jobseeker = (com.beans.Jobseeker) _jspx_page_context.getAttribute("jobseeker", PageContext.SESSION_SCOPE);
+        if (jobseeker == null){
+          jobseeker = new com.beans.Jobseeker();
+          _jspx_page_context.setAttribute("jobseeker", jobseeker, PageContext.SESSION_SCOPE);
+        }
+      }
+      out.write("\n");
       out.write("        <!-- ============================================================== -->\n");
       out.write("        <!-- Topbar header - style you can find in pages.scss -->\n");
       out.write("        <!-- ============================================================== -->\n");
@@ -110,9 +138,7 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <h4 class=\"page-title\">Profile page</h4>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"col-lg-9 col-sm-8 col-md-8 col-xs-12\">\n");
-      out.write("                        <a href=\"https://wrappixel.com/templates/ampleadmin/\" target=\"_blank\"\n");
-      out.write("                            class=\"btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light\">Upgrade\n");
-      out.write("                            to Pro</a>\n");
+      out.write("                        \n");
       out.write("                        <ol class=\"breadcrumb\">\n");
       out.write("                            <li><a href=\"#\">Dashboard</a></li>\n");
       out.write("                            <li class=\"active\">Profile Page</li>\n");
@@ -124,29 +150,42 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <div class=\"row\">\n");
       out.write("                    <div class=\"col-md-4 col-xs-12\">\n");
       out.write("                        <div class=\"white-box\">\n");
-      out.write("                            <div class=\"user-bg\"> <img width=\"100%\" alt=\"user\" src=\"../Main_template/plugins/images/large/img1.jpg\">\n");
+      out.write("                            <div class=\"user-bg\"> <img width=\"100%\" alt=\"user\" src=\"../");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.photo}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\n");
       out.write("                                <div class=\"overlay-box\">\n");
       out.write("                                    <div class=\"user-content\">\n");
-      out.write("                                        <a href=\"javascript:void(0)\"><img src=\"../Main_template/plugins/images/users/genu.jpg\"\n");
+      out.write("                                        <a href=\"javascript:void(0)\"><img src=\"../");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.photo}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"\n");
       out.write("                                                class=\"thumb-lg img-circle\" alt=\"img\"></a>\n");
-      out.write("                                        <h4 class=\"text-white\">User Name</h4>\n");
-      out.write("                                        <h5 class=\"text-white\">info@myadmin.com</h5>\n");
+      out.write("                                        <h4 class=\"text-white\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.username}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</h4>\n");
+      out.write("                                        <h5 class=\"text-white\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.email}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</h5>\n");
       out.write("                                    </div>\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                            <div class=\"user-btm-box\">\n");
-      out.write("                                <div class=\"col-md-4 col-sm-4 text-center\">\n");
-      out.write("                                    <p class=\"text-purple\"><i class=\"ti-facebook\"></i></p>\n");
-      out.write("                                    <h1>258</h1>\n");
-      out.write("                                </div>\n");
-      out.write("                                <div class=\"col-md-4 col-sm-4 text-center\">\n");
-      out.write("                                    <p class=\"text-blue\"><i class=\"ti-twitter\"></i></p>\n");
-      out.write("                                    <h1>125</h1>\n");
-      out.write("                                </div>\n");
-      out.write("                                <div class=\"col-md-4 col-sm-4 text-center\">\n");
-      out.write("                                    <p class=\"text-danger\"><i class=\"ti-dribbble\"></i></p>\n");
-      out.write("                                    <h1>556</h1>\n");
-      out.write("                                </div>\n");
+      out.write("                                 \n");
+      out.write("                                <i class=\"fa fa-user fa-fw\" aria-hidden=\"true\"></i>");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.first_name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(' ');
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.last_name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(" | ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.gender}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("<br>\n");
+      out.write("                                <i class=\"fa fa-map-marker fa-fw\" aria-hidden=\"true\"></i>");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.country}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(" | ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.state}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(',');
+      out.write(' ');
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.city}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\n");
+      out.write("                                    \n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
@@ -154,55 +193,155 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"white-box\">\n");
       out.write("                            <form class=\"form-horizontal form-material\">\n");
       out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <label class=\"col-md-12\">Full Name</label>\n");
-      out.write("                                    <div class=\"col-md-12\">\n");
-      out.write("                                        <input type=\"text\" placeholder=\"Johnathan Doe\"\n");
-      out.write("                                            class=\"form-control form-control-line\"> </div>\n");
-      out.write("                                </div>\n");
-      out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <label for=\"example-email\" class=\"col-md-12\">Email</label>\n");
-      out.write("                                    <div class=\"col-md-12\">\n");
-      out.write("                                        <input type=\"email\" placeholder=\"johnathan@admin.com\"\n");
-      out.write("                                            class=\"form-control form-control-line\" name=\"example-email\"\n");
-      out.write("                                            id=\"example-email\"> </div>\n");
-      out.write("                                </div>\n");
-      out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <label class=\"col-md-12\">Password</label>\n");
-      out.write("                                    <div class=\"col-md-12\">\n");
-      out.write("                                        <input type=\"password\" value=\"password\" class=\"form-control form-control-line\">\n");
+      out.write("                                    <p style=\"font-family:helvetica ;font-size:30px; color:#525252 ; margin:20px\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.first_name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(' ');
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.last_name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                                    <hr>\n");
+      out.write("                                    ");
+if(jobseeker.school!=null ||jobseeker.course!=null||jobseeker.college!=null){
+      out.write("\n");
+      out.write("                                    <p style=\"font-family:helvetica ;font-size:20px; color:#767676 ; margin:15px\">Education</p><br>\n");
+      out.write("                                    \n");
+      out.write("                                    ");
+if(jobseeker.school!=null ){
+      out.write("\n");
+      out.write("                                    <div class=\"row\">\n");
+      out.write("                                        <div class=\"col-md-4\">\n");
+      out.write("                                            <label class=\"l1\">High School</label>\n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"col-md-6\">\n");
+      out.write("                                            <p class=\"p1\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.school}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                                        </div>\n");
       out.write("                                    </div>\n");
-      out.write("                                </div>\n");
-      out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <label class=\"col-md-12\">Phone No</label>\n");
-      out.write("                                    <div class=\"col-md-12\">\n");
-      out.write("                                        <input type=\"text\" placeholder=\"123 456 7890\"\n");
-      out.write("                                            class=\"form-control form-control-line\"> </div>\n");
-      out.write("                                </div>\n");
-      out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <label class=\"col-md-12\">Message</label>\n");
-      out.write("                                    <div class=\"col-md-12\">\n");
-      out.write("                                        <textarea rows=\"5\" class=\"form-control form-control-line\"></textarea>\n");
+      out.write("                                     ");
+}
+      out.write("   \n");
+      out.write("                                     ");
+if(jobseeker.school!=null ){
+      out.write("\n");
+      out.write("                                    <div class=\"row\">\n");
+      out.write("                                        <div class=\"col-md-4\">\n");
+      out.write("                                            <label class=\"l1\">Intermediate</label>\n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"col-md-6\">\n");
+      out.write("                                            <p class=\"p1\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.school}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                                        </div>\n");
       out.write("                                    </div>\n");
-      out.write("                                </div>\n");
-      out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <label class=\"col-sm-12\">Select Country</label>\n");
-      out.write("                                    <div class=\"col-sm-12\">\n");
-      out.write("                                        <select class=\"form-control form-control-line\">\n");
-      out.write("                                            <option>London</option>\n");
-      out.write("                                            <option>India</option>\n");
-      out.write("                                            <option>Usa</option>\n");
-      out.write("                                            <option>Canada</option>\n");
-      out.write("                                            <option>Thailand</option>\n");
-      out.write("                                        </select>\n");
+      out.write("                                        ");
+}
+      out.write(" \n");
+      out.write("                                     ");
+if(jobseeker.course!=null ){
+      out.write("    \n");
+      out.write("                                    <div class=\"row\">\n");
+      out.write("                                        <div class=\"col-md-4\">\n");
+      out.write("                                            <label class=\"l1\">Field of Study</label>\n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"col-md-6\">\n");
+      out.write("                                            <p class=\"p1\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.course}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                                        </div>\n");
+      out.write("                                          \n");
       out.write("                                    </div>\n");
-      out.write("                                </div>\n");
-      out.write("                                <div class=\"form-group\">\n");
-      out.write("                                    <div class=\"col-sm-12\">\n");
-      out.write("                                        <button class=\"btn btn-success\">Update Profile</button>\n");
+      out.write("                                        ");
+}
+      out.write(" \n");
+      out.write("                                     ");
+if(jobseeker.college!=null ){
+      out.write("   \n");
+      out.write("                                    <div class=\"row\">\n");
+      out.write("                                        <div class=\"col-md-4\">\n");
+      out.write("                                            <label class=\"l1\">Institute</label>\n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"col-md-4\">\n");
+      out.write("                                            <p class=\"p1\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.college}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                                        </div>\n");
+      out.write("\n");
       out.write("                                    </div>\n");
-      out.write("                                </div>\n");
+      out.write("                                    ");
+}
+      out.write("\n");
+      out.write("                                    ");
+}
+      out.write("\n");
+      out.write("                                    \n");
+      out.write("                                    ");
+if(jobseeker.experience!=null ||jobseeker.skills!=null ||jobseeker.achievements!=null ){
+      out.write("\n");
+      out.write("                                    <hr>\n");
+      out.write("                                    <p style=\"font-family:helvetica ;font-size:20px; color:#767676 ; margin:15px\">Other Details</p><br>\n");
+      out.write("                                    \n");
+      out.write("                                    ");
+if(jobseeker.experience!=null ){
+      out.write("\n");
+      out.write("                                    <div class=\"row\">\n");
+      out.write("                                        <div class=\"col-md-12\">\n");
+      out.write("                                            <label class=\"l1\">Experience</label>\n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"col-md-12\">\n");
+      out.write("                                            <p class=\"p1\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.experience}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                                        </div>\n");
+      out.write("                                    </div>\n");
+      out.write("                                     ");
+}
+      out.write("  \n");
+      out.write("                                     ");
+if(jobseeker.skills!=null ){
+      out.write("\n");
+      out.write("                                      <div class=\"row\">\n");
+      out.write("                                        <div class=\"col-md-12\">\n");
+      out.write("                                            <label class=\"l1\">Skills</label>\n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"col-md-12\">\n");
+      out.write("                                            <p class=\"p1\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.skills}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                                        </div>\n");
+      out.write("                                    </div>\n");
+      out.write("                                        ");
+}
+      out.write("\n");
+      out.write("                                         ");
+if(jobseeker.achievements!=null ){
+      out.write("\n");
+      out.write("                                      <div class=\"row\">\n");
+      out.write("                                        <div class=\"col-md-12\">\n");
+      out.write("                                            <label class=\"l1\">Achievements</label>\n");
+      out.write("                                        </div>\n");
+      out.write("                                        <div class=\"col-md-12\">\n");
+      out.write("                                            <p class=\"p1\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.achievements}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\n");
+      out.write("                                        </div>\n");
+      out.write("                                    </div>\n");
+      out.write("                                        ");
+}
+      out.write("\n");
+      out.write("                                    ");
+}
+      out.write("\n");
+      out.write("                                </div> \n");
+      out.write("                                <a href=\"#\" class=\"btn btn-success\">Update Profile</a>\n");
       out.write("                            </form>\n");
+      out.write("\n");
       out.write("                        </div>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                        \n");
+      out.write("                    </div>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("                <!-- /.row -->\n");

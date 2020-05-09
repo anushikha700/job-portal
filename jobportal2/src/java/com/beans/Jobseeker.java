@@ -11,7 +11,7 @@ package com.beans;
  */
 public class Jobseeker {
     private int jsid;
-    public String username,email,password,first_name,last_name,contact,dob,gender,country,state,city,high_school,intermediate,degree,institute,experience,skills,achievements,photo;
+    public String username,email,password,first_name,last_name,contact,dob,gender,country,state,city,school,qualification,college,course,specialization,passing_year,experience,skills,achievements,photo;
 
     public int getJsid() {
         return jsid;
@@ -109,38 +109,59 @@ public class Jobseeker {
         this.city = city;
     }
 
-    public String getHigh_school() {
-        return high_school;
+    public String getSchool() {
+        return school;
     }
 
-    public void setHigh_school(String high_school) {
-        this.high_school = high_school;
+    public void setSchool(String school) {
+        this.school = school;
     }
 
-    public String getIntermediate() {
-        return intermediate;
+   
+
+    public String getQualification() {
+        return qualification;
     }
 
-    public void setIntermediate(String intermediate) {
-        this.intermediate = intermediate;
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
     }
 
-    public String getDegree() {
-        return degree;
+    public String getCollege() {
+        return college;
     }
 
-    public void setDegree(String degree) {
-        this.degree = degree;
+    public void setCollege(String college) {
+        this.college = college;
     }
 
-    public String getInstitute() {
-        return institute;
+    public String getCourse() {
+        return course;
     }
 
-    public void setInstitute(String institute) {
-        this.institute = institute;
+    public void setCourse(String course) {
+        this.course = course;
     }
 
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public String getPassing_year() {
+        return passing_year;
+    }
+
+    public void setPassing_year(String passing_year) {
+        this.passing_year = passing_year;
+    }
+
+   
+
+ 
     public String getExperience() {
         return experience;
     }

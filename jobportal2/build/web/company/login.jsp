@@ -45,7 +45,7 @@
 							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est natus facere aperiam!
 								Tenetur maiores dolore a quod pariatur ut voluptates quae saepe ea quasi laudantium,
 								iste molestias inventore fuga assumenda.</p>
-							<a href="signup.jsp" class="read-more-1 btn">Get Started</a>
+							<a href="../StartPage.jsp" class="read-more-1 btn">Get Started</a>
 						</div>
 					
 					</div>

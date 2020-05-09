@@ -156,7 +156,7 @@ public final class ViewJobs_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"container-fluid\">\n");
       out.write("                <div class=\"row bg-title\">\n");
       out.write("                    <div class=\"col-lg-3 col-md-4 col-sm-4 col-xs-12\">\n");
-      out.write("                        <h4 class=\"page-title\">Basic Table</h4>\n");
+      out.write("                        <h4 class=\"page-title\">Jobs Added</h4>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"col-lg-9 col-sm-8 col-md-8 col-xs-12\">\n");
       out.write("                        <a href=\"https://wrappixel.com/templates/ampleadmin/\" target=\"_blank\"\n");
@@ -165,8 +165,8 @@ public final class ViewJobs_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                        </a>\n");
       out.write("                        <ol class=\"breadcrumb\">\n");
-      out.write("                            <li><a href=\"#\">Dashboard</a></li>\n");
-      out.write("                            <li class=\"active\">Basic Table</li>\n");
+      out.write("                            <li><a href=\"dashboard.jsp\">Dashboard</a></li>\n");
+      out.write("                            <li class=\"active\">Jobs Added</li>\n");
       out.write("                        </ol>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- /.col-lg-12 -->\n");
@@ -301,7 +301,8 @@ if(i==Math.floor(start/end))out.println(" btn-dark");
 }
       out.write("\n");
       out.write("                                </center>\n");
-      out.write("                            </span>    \n");
+      out.write("                            </span> \n");
+      out.write("                                \n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");

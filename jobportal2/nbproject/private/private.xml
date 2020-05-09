@@ -4,15 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/beans/Jobseeker.java</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/Profile.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/controllers/CompanyController.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/controllers/JsController.java</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/dashboard.jsp</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/login.jsp</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/topbar.jsp</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/UploadPhoto.jsp</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/signup.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/ChangePassword.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/daos/CompanyDao.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/ChangePassword.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/ApplyJob.jsp</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/daos/JsDao.java</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/sidebar.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/ApplyJob2.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/sidebar.jsp</file>
         </group>
     </open-files>
 </project-private>

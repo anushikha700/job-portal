@@ -158,7 +158,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t\t<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est natus facere aperiam!\n");
       out.write("\t\t\t\t\t\t\t\tTenetur maiores dolore a quod pariatur ut voluptates quae saepe ea quasi laudantium,\n");
       out.write("\t\t\t\t\t\t\t\tiste molestias inventore fuga assumenda.</p>\n");
-      out.write("\t\t\t\t\t\t\t<a href=\"signup.jsp\" class=\"read-more-1 btn\">Get Started</a>\n");
+      out.write("\t\t\t\t\t\t\t<a href=\"../StartPage.jsp\" class=\"read-more-1 btn\">Get Started</a>\n");
       out.write("\t\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t\t\n");
       out.write("\t\t\t\t\t</div>\n");
@@ -206,7 +206,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t</form>\n");
       out.write("\t\t\t\t\t<div class=\"copy-right text-center\">\n");
       out.write("\t\t\t\t\t\t<p>Already have an account?\n");
-      out.write("\t\t\t\t\t\t\t\t<a href=\"login.jsp\" target=\"_blank\">Login</a></p>\n");
+      out.write("\t\t\t\t\t\t\t\t<a href=\"login.jsp\">Login</a></p>\n");
       out.write("\t\t\t\t\t </div>\n");
       out.write("\t\t\t\t</div>\n");
       out.write("\t\t\t\t\n");
