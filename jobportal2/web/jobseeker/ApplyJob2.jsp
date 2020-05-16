@@ -3,6 +3,10 @@
     Created on : May 2, 2020, 3:51:30 PM
     Author     : anushikha
 --%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import ="java.text.SimpleDateFormat"%>
+<%@page import ="java.util.Date"%>
 <%@page import="com.utilities.FileUploader"%>
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 <%@page import="com.beans.Jobseeker"%>
@@ -24,22 +28,37 @@
     <jsp:include page="base.jsp"></jsp:include>
    
     
-     <script>
+    <script>
 
-                function readURL(input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
+               function readURL(input) {
+                   if (input.files && input.files[0]) {
+                       var reader = new FileReader();
 
-                        reader.onload = function (e) {
-                            resume.src = e.target.result;
-                        };
+                       reader.onload = function (e) {
+                           resume.src = e.target.result;
+                       };
 
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }
+                       reader.readAsDataURL(input.files[0]);
+                   }
+               }
 
-</script>
-   <style>
+            function setDate(){ 
+               var date = new Date();
+               var day = date.getDate();
+               var month = date.getMonth() + 1;
+               var year = date.getFullYear();
+
+               if (month < 10) month = "0" + month;
+               if (day < 10) day = "0" + day;
+
+               var today = year + "-" + month + "-" + day;
+
+               document.getElementById('addjob').posted_on.value = today;
+   }
+
+    
+    </script>
+    <style>
        .alertcol{
            color: #3c763d;
            background-color: #dff0d8;
@@ -103,6 +122,10 @@
                    <%
                        int jid=request.getParameter("jid")!=null?Integer.parseInt(request.getParameter("jid")):-1;
                         int jsid=jobseeker.getJsid();
+                      	Date date = Calendar.getInstance().getTime();  
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");  
+                        String applicationDate = dateFormat.format(date);
+                        
    
                    %>     
                 <div class="row">
@@ -112,7 +135,7 @@
                             <br>
                             
                             
-                            <form enctype="multipart/form-data"  method="post" action="../JobApplyController?op=upload_resume&jid=<%=jid%>&jsid=<%=jsid%>" class="form-horizontal form-material" >
+                            <form enctype="multipart/form-data"  method="post" action="../JobApplyController?op=upload_resume&jid=<%=jid%>&jsid=<%=jsid%>&applicationDate=<%=applicationDate%>" class="form-horizontal form-material" >
                                 <div class="form-group">
                                     <label class="col-md-4">Upload Resume</label>
 

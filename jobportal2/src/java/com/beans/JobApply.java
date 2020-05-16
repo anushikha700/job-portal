@@ -11,7 +11,7 @@ package com.beans;
  */
 public class JobApply {
     private int jaid,jid,jsid;
-    String resume;
+    String resume,applicationDate,shortlist;
 
     public int getJaid() {
         return jaid;
@@ -43,6 +43,22 @@ public class JobApply {
 
     public void setResume(String resume) {
         this.resume = resume;
+    }
+
+    public String getApplicationDate() {
+        return applicationDate;
+    }
+
+    public void setApplicationDate(String applicationDate) {
+        this.applicationDate = applicationDate;
+    }
+
+    public String getShortlist() {
+        return shortlist;
+    }
+
+    public void setShortlist(String shortlist) {
+        this.shortlist = shortlist;
     }
     
 }

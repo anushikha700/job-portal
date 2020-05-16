@@ -148,7 +148,7 @@ public class CompanyController extends HttpServlet {
          
          if(op!=null&op.equals("changePass"))
          {
-             System.out.println("IN CHange Pass");
+            
              int cid = Integer.parseInt(request.getParameter("cid"));
              String curpass=request.getParameter("password");
              String newpass=request.getParameter("newpassword");

@@ -95,11 +95,7 @@
                         <h4 class="page-title">Jobs Added</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank"
-                            class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade
-                            to Pro
-
-                        </a>
+                       
                         <ol class="breadcrumb">
                             <li><a href="dashboard.jsp">Dashboard</a></li>
                             <li class="active">Jobs Added</li>
@@ -183,9 +179,7 @@
                                 <a href="ViewJobs.jsp?start=<%=start-end%>" class="btn btn-primary <%if(start==0)out.println(" disabled"); %>" style="float:left"><< Previous</a>
                                 <a href="ViewJobs.jsp?start=<%=start+end%>" class="btn btn-primary <%if(total-start <= end) out.println(" disabled");%>" style="float: right">Next >></a>
                                 
-                                <%for(int i=0; i<=total/end;i++){%>
-                                <a href="ViewJobs.jsp?start=<%=i*end%>" class="btn btn-success <%if(i==Math.floor(start/end))out.println(" btn-dark");%>">Page<%=i+1%></a>
-                                <%}%>
+                                
                                 </center>
                             </span> 
                                 

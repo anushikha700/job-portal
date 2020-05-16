@@ -70,7 +70,7 @@ public final class AddJobs_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            $(document).ready(function () {\n");
       out.write("        \n");
       out.write("            \n");
-      out.write("             var url = \"https://raw.githubusercontent.com/anushikha700/jason/master/industries.json\";\n");
+      out.write("             var url = \"https://raw.githubusercontent.com/anushikha700/Industry/master/industries.json\";\n");
       out.write("\n");
       out.write("            $.getJSON(url, function (data) {\n");
       out.write("                $.each(data, function (index, value) {\n");

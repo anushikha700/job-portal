@@ -26,7 +26,7 @@
             $(document).ready(function () {
         
             
-             var url = "https://raw.githubusercontent.com/anushikha700/jason/master/industries.json";
+             var url = "https://raw.githubusercontent.com/anushikha700/Industry/master/industries.json";
 
             $.getJSON(url, function (data) {
                 $.each(data, function (index, value) {

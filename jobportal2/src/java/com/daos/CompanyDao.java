@@ -400,22 +400,22 @@ public class CompanyDao {
             smt.setString(1, email);
             smt.setString(2, encodedPassword);
             ResultSet rs= smt.executeQuery();
-            if(rs.next()){
-                company=new Company();
+            if (rs.next()) {
+                company = new Company();
                 company.setCid(rs.getInt("cid"));
                 company.setCname(rs.getString("cname"));
-                 company.setEmail(rs.getString("email"));
-                
+                company.setEmail(rs.getString("email"));
+
                 company.setPassword(rs.getString("password"));
-                System.out.println("dao cname: "+rs.getString("cname"));
-             //   company.setLogo(rs.getString("logo"));
-                 
-             //   company.setCountry(rs.getString("country"));
-            //    company.setState(rs.getString("state"));
-           //     company.setCity(rs.getString("city"));
-           //     company.setPincode(rs.getString("pincode"));
-          //      company.setAddress(rs.getString("address"));
-                           }
+
+                company.setLogo(rs.getString("logo"));
+
+                company.setCountry(rs.getString("country"));
+                company.setState(rs.getString("state"));
+                company.setCity(rs.getString("city"));
+                company.setAbout_us(rs.getString("about_us"));
+
+            }
             smt.close();
             cp.putConnection(con);
         }   catch(Exception e){

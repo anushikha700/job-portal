@@ -152,7 +152,7 @@ public class JsController extends HttpServlet {
         
          if(op!=null&op.equals("changePass"))
          {
-             System.out.println("IN CHange Pass");
+            
              int jsid = Integer.parseInt(request.getParameter("jsid"));
              String curpass=request.getParameter("password");
              String newpass=request.getParameter("newpassword");

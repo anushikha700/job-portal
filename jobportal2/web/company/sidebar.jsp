@@ -14,18 +14,18 @@
                         <a href="dashboard.jsp" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
+                        <a href="Profile.jsp" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
                     </li>
                     <li>
                         <a href="AddJobs.jsp" class="waves-effect"><i class="fa  fa-pencil-square-o fa-fw" aria-hidden="true"></i>Post New Job</a>
                     </li>
                     <li>
-                        <a href="ViewJobs.jsp" class="waves-effect"><i class="fa fa-bars fa-fw" aria-hidden="true"></i>View All Jobs</a>
+                        <a href="ViewJobs.jsp" class="waves-effect"><i class="fa fa-bars fa-fw" aria-hidden="true"></i>Jobs Posted</a>
                     </li>
                     
                    
                     <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>View Candidates Applied</a>
+                        <a href="CandidatesApplied.jsp" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>Candidates Applied</a>
                     </li>
                      <li>
                         <a href="ChangePassword.jsp" class="waves-effect"><i class="fa fa-gear fa-fw" aria-hidden="true"></i>Change Password</a>

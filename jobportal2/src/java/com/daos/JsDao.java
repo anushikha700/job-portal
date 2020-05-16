@@ -7,11 +7,11 @@ package com.daos;
 
 
 import com.beans.Jobseeker;
-import com.controllers.JsController;
 import com.pool.ConnectionPool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Base64;
 
 /**
@@ -254,11 +254,6 @@ public class JsDao {
                 jobseeker.setAchievements(rs.getString("achievements"));
                 jobseeker.setPhoto(rs.getString("photo"));
 
-                
-                
-                
-                
-                
                 System.out.println("dao cname: "+rs.getString("username"));
                                         }
             smt.close();
@@ -325,4 +320,37 @@ public class JsDao {
        
     return status;
    }
+      
+      //To get information of jobseeker applied for particular job
+      public ArrayList<Jobseeker>  getJobseekersInfo(int jsid){
+    
+       ArrayList<Jobseeker> jobseekers =new ArrayList<Jobseeker>();
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select * from jobseeker where jsid=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, jsid);
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+                Jobseeker  jobseeker =new Jobseeker();
+               
+                jobseeker.setFirst_name(rs.getString("first_name"));
+                jobseeker.setLast_name(rs.getString("last_name"));
+               
+                jobseekers.add(jobseeker);
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return jobseekers;
+   }
+
+
 }

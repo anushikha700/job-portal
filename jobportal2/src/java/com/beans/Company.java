@@ -11,7 +11,7 @@ package com.beans;
  */
 public class Company {
     private int cid;
-    String cname, email, password, logo, country,state,city,pincode,address,about_us,contact;
+    public String cname, email, password, logo, country,state,city,pincode,address,about_us,contact;
 
     public int getCid() {
         return cid;
