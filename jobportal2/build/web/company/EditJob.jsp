@@ -154,7 +154,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12">Job Description,Skills Required etc.</label>
                                     <div class="col-md-12">
-                                        <textarea rows="5" name="description" value="${job.description}" class="form-control form-control-line"></textarea> </div>
+                                        <textarea rows="5" name="description" class="form-control form-control-line">${job.description}</textarea> </div>
                                 </div>
                                 
                                 <div class="form-group">

@@ -20,7 +20,7 @@
                         <a href="SearchJobs.jsp" class="waves-effect"><i class="fa  fa-search fa-fw" aria-hidden="true"></i>Search Jobs</a>
                     </li>
                     <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-bars fa-fw" aria-hidden="true"></i>View Jobs Applied In</a>
+                        <a href="JobsApplied.jsp" class="waves-effect"><i class="fa fa-bars fa-fw" aria-hidden="true"></i>View Jobs Applied In</a>
                     </li>
                     
                    

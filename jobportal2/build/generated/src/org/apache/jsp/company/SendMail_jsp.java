@@ -1,15 +1,13 @@
-package org.apache.jsp.jobseeker;
+package org.apache.jsp.company;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import com.beans.JobApply;
-import com.daos.JobApplyDao;
-import com.daos.JobDao;
-import com.beans.Job;
+import com.utilities.EmailSender;
+import com.daos.JsDao;
 import java.util.ArrayList;
 
-public final class JobsApplied_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class SendMail_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -51,9 +49,6 @@ public final class JobsApplied_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html lang=\"en\">\n");
       out.write("\n");
@@ -64,60 +59,14 @@ public final class JobsApplied_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <meta name=\"description\" content=\"\">\n");
       out.write("    <meta name=\"author\" content=\"\">\n");
       out.write("    <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"../plugins/images/favicon.png\">\n");
-      out.write("    <title>Dashboard|Jobs Applied</title>\n");
+      out.write("    <title>Company|Send Mail</title>\n");
       out.write("    <!-- Bootstrap Core CSS -->\n");
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "base.jsp", out, false);
       out.write("\n");
-      out.write("    <style>\n");
-      out.write("        .cut-text { \n");
-      out.write("  text-overflow: ellipsis;\n");
-      out.write("  overflow: hidden; \n");
-      out.write("  width: 500px; \n");
-      out.write("  height: 1.2em; \n");
-      out.write("  white-space: nowrap;\n");
-      out.write(" \n");
-      out.write("}\n");
-      out.write("    </style>\n");
-      out.write("    \n");
-      out.write("    \n");
-      out.write("     <script>\n");
-      out.write("          $(document).ready(function(){\n");
-      out.write("    $(\"button\").click(function(){\n");
-      out.write("        var jaid= $(this).val();\n");
-      out.write("      \n");
-      out.write("        $(\"#s1\").load(\"ApplicationStatus.jsp?jaid=\"+jaid);\n");
-      out.write("    });\n");
-      out.write("});\n");
-      out.write("   </script>  \n");
-      out.write("   \n");
-      out.write("   <script>\n");
-      out.write("       $().ready(function () {\n");
-      out.write("        var $scrollingDiv = $(\"#scroll\");\n");
-      out.write("\n");
-      out.write("        $(window).scroll(function () {\n");
-      out.write("            $scrollingDiv\n");
-      out.write("            .stop()\n");
-      out.write("            .animate({ \"marginTop\": ($(window).scrollTop() + 5) + \"px\" }, \"1000\");\n");
-      out.write("        });\n");
-      out.write("    });\n");
-      out.write("   </script>    \n");
-      out.write("    \n");
-      out.write("    \n");
       out.write("</head>\n");
       out.write("\n");
       out.write("<body class=\"fix-header\">\n");
-      out.write("    ");
-
-        if(session.getAttribute("jobseeker")==null)
-        {
-            
-            response.sendRedirect("login.jsp");
-            return;
-        }
-              
-        
-      out.write("\n");
       out.write("    <!-- ============================================================== -->\n");
       out.write("    <!-- Preloader -->\n");
       out.write("    <!-- ============================================================== -->\n");
@@ -151,86 +100,58 @@ public final class JobsApplied_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"container-fluid\">\n");
       out.write("                <div class=\"row bg-title\">\n");
       out.write("                    <div class=\"col-lg-3 col-md-4 col-sm-4 col-xs-12\">\n");
-      out.write("                        <h4 class=\"page-title\">Jobs Applied</h4>\n");
+      out.write("                        <h4 class=\"page-title\">Send Mail</h4>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"col-lg-9 col-sm-8 col-md-8 col-xs-12\">\n");
-      out.write("                        \n");
+      out.write("                       \n");
       out.write("                        <ol class=\"breadcrumb\">\n");
       out.write("                            <li><a href=\"#\">Dashboard</a></li>\n");
-      out.write("                            <li class=\"active\">Jobs Applied</li>\n");
+      out.write("                            <li class=\"active\">Send Mail</li>\n");
       out.write("                        </ol>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- /.col-lg-12 -->\n");
       out.write("                </div>\n");
-      out.write("                 ");
-      com.beans.Jobseeker jobseeker = null;
-      synchronized (session) {
-        jobseeker = (com.beans.Jobseeker) _jspx_page_context.getAttribute("jobseeker", PageContext.SESSION_SCOPE);
-        if (jobseeker == null){
-          jobseeker = new com.beans.Jobseeker();
-          _jspx_page_context.setAttribute("jobseeker", jobseeker, PageContext.SESSION_SCOPE);
-        }
-      }
-      out.write("\n");
-      out.write("                 ");
-
-                               JobApplyDao ja=new JobApplyDao();
-                               int jsid=jobseeker.getJsid();
-                               
-                                ArrayList<JobApply> jobapplylist=ja.getJobsApplied(jsid);
-                               
-                                
-                              
-                       
-                  
-      out.write("\n");
-      out.write("\n");
       out.write("                <div class=\"row\">\n");
-      out.write("                    <div class=\"col-md-7\">\n");
+      out.write("                    <div class=\"col-md-12\">\n");
       out.write("                        <div class=\"white-box\">\n");
-      out.write("                            <h3 class=\"box-title\">Jobs Applied</h3>\n");
-      out.write("                           <div class=\"comment-center p-t-10\">\n");
-      out.write("                               ");
-      for (JobApply jobapply : jobapplylist) {
-                                       int jid = jobapply.getJid();
-                                       int jaid = jobapply.getJaid();
-                                       JobDao jd = new JobDao();
-
-                                       ArrayList<Job> joblist = jd.getJobDetails(jid);
-                                       for (Job job : joblist) {
-                               
+      out.write("                            <h3 class=\"box-title\">Send Mail</h3>\n");
+      out.write("                            \n");
+      out.write("                             <form method=\"post\" class=\"form-horizontal form-material\" action=\"#\">\n");
+      out.write("                                  ");
+ int jsid=request.getParameter("jsid")!=null?Integer.parseInt(request.getParameter("jsid")):-1; 
+                                   JsDao js=new JsDao();
+                                   String to=js.getEmail(jsid);
+                                   System.out.println("to:"+to);
+                                  
       out.write("\n");
-      out.write("                                <div class=\"comment-body\">\n");
-      out.write("                                    \n");
-      out.write("                                    <div class=\"mail-contnet\">\n");
-      out.write("                                        <h5>");
-      out.print(job.getTitle());
-      out.write("</h5><span class=\"time\">Posted on: ");
-      out.print(job.getPosted_on());
-      out.write("</span>\n");
-      out.write("                                        <br/>\n");
-      out.write("                                        <span class=\"mail-desc cut-text\">");
-      out.print(job.getDescription());
-      out.write("</span>\n");
-      out.write("                                        <button class=\"btn btn btn-rounded btn-default btn-outline m-r-5\" value=\"");
-      out.print(jaid);
-      out.write("\" ><i class=\"ti-check text-success m-r-5\"></i>View Application Status</button>\n");
-      out.write("                                    </div>\n");
-      out.write("                                </div>\n");
-      out.write("                                \n");
-      out.write("                               ");
-}}
-      out.write("\n");
-      out.write("                            </div>\n");
-      out.write("                           \n");
-      out.write("                        \n");
+      out.write("                                    <center>\n");
+      out.write("                                    <div class=\"form-group\">\n");
+      out.write("                                        <label class=\"col-md-4\">To: </label>\n");
+      out.write("                                        <div class=\"col-md-4\">\n");
+      out.write("                                            <input type=\"text\" name=\"to\" value=\"");
+      out.print(to);
+      out.write("\" class=\"form-control form-control-line\" readonly=\"readonly\"> </div> \n");
+      out.write("                                     </div><br>\n");
+      out.write("                                     <div class=\"form-group\">\n");
+      out.write("                                        <label class=\"col-md-4\">Subject:  </label>\n");
+      out.write("                                        <div class=\"col-md-4\">\n");
+      out.write("                                        <textarea row=\"1\" name=\"subject\" class=\"form-control form-control-line\" ></textarea> </div> \n");
+      out.write("                                     </div><br>\n");
+      out.write("                                      <div class=\"form-group\">\n");
+      out.write("                                        <label class=\"col-md-4\">Message:  </label>\n");
+      out.write("                                        <div class=\"col-md-4\">\n");
+      out.write("                                        <textarea row=\"5\" name=\"message\" class=\"form-control form-control-line\" ></textarea> </div> \n");
+      out.write("                                     </div><br>\n");
+      out.write("                                   \n");
+      out.write("                                     <center>\n");
+      out.write("                                    <div class=\"form-group\">\n");
+      out.write("                                        <button class=\"btn btn-success\" name=\"submit\">Send Mail</button>\n");
+      out.write("                                     </div>\n");
+      out.write("                                         </center>\n");
+      out.write("                                    </center>  \n");
+      out.write("                                </form>    \n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
-      out.write("                            <div class=\"col-md-5\" id=\"scroll\">\n");
-      out.write("                                <span id=\"s1\">\n");
-      out.write("\n");
-      out.write("                                </span>\n");
-      out.write("                            </div>\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("            <!-- /.container-fluid -->\n");
@@ -242,6 +163,44 @@ public final class JobsApplied_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <!-- End Page Content -->\n");
       out.write("        <!-- ============================================================== -->\n");
       out.write("    </div>\n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("         ");
+ if (request.getParameter("submit") != null) {
+            String host;
+            String port;
+            String user;
+            String pass;
+            //reads SMTP server setting from web.xml file 
+            ServletContext context = config.getServletContext();
+            host = context.getInitParameter("host");
+            port = context.getInitParameter("port");
+            user = context.getInitParameter("user");
+            pass = context.getInitParameter("pass");
+            
+            
+            
+           
+            String email=to;
+
+           
+            String recipients[] = request.getParameter("to").split(",");
+            String subject =request.getParameter("subject");
+            String message = request.getParameter("message");
+
+
+            if(EmailSender.sendEmail(host, port, user, pass, recipients, subject, message))
+                    out.println("<font color='Black'>Mail Sent Successfully</font>");
+            else
+                    out.println("<font color='red'>Mail could not be sent !!</font>");
+           
+        }
+      out.write("\n");
+      out.write("\n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("        \n");
       out.write("    <!-- /#wrapper -->\n");
       out.write("    <!-- jQuery -->\n");
       out.write("    <script src=\"../Main_template/plugins/bower_components/jquery/dist/jquery.min.js\"></script>\n");

@@ -3,21 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/Profile.jsp</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/controllers/JsController.java</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/ApplyJob.jsp</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/controllers/JobApplyController.java</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/ApplyJob2.jsp</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/sidebar.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/beans/Jobseeker.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/AddProfile.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/UploadPhoto.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/ForgotPassword.jsp</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/daos/JobDao.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/daos/CompanyDao.java</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/Profile.jsp</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/CandidatesApplied2.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/SendMail.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/daos/AdminDao.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/ViewShortlisted.jsp</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/CandidatesApplied.jsp</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/daos/JsDao.java</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/beans/Company.java</file>
             <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/src/java/com/daos/JobApplyDao.java</file>
-            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/company/ViewJobs.jsp</file>
+            <file>file:/C:/Users/Dell/Documents/NetBeansProjects/jobportal2/web/jobseeker/AddProfile.jsp</file>
         </group>
     </open-files>
 </project-private>

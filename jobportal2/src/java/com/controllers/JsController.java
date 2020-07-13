@@ -150,6 +150,66 @@ public class JsController extends HttpServlet {
                  
         }
         
+        
+        
+        
+        
+         if (op != null && op.equals("updateProfile")) {
+          System.out.println("i am here");
+
+            int jsid = Integer.parseInt(request.getParameter("jsid"));
+            String first_name= request.getParameter("first_name");
+            String last_name= request.getParameter("last_name");
+            String dob=request.getParameter("dob");
+            String gender=request.getParameter("gender");
+            String country=request.getParameter("coutnry");
+            String state=request.getParameter("state");
+            String city=request.getParameter("city");
+            String contact=request.getParameter("contact");
+            String qualification=request.getParameter("qualification");
+            String course=request.getParameter("course");
+            String specialization=request.getParameter("specialization");
+            String college=request.getParameter("college");
+            String school=request.getParameter("school");
+            String passing_year=request.getParameter("passing_year");
+            String experience=request.getParameter("experience");
+            String skills=request.getParameter("skills");
+            String achievements=request.getParameter("achievements");
+            
+           
+            HttpSession session = request.getSession();
+            com.beans.Jobseeker jobseeker = (com.beans.Jobseeker) session.getAttribute("jobseeker");
+            
+            jobseeker.setFirst_name(first_name);
+            jobseeker.setLast_name(last_name);
+            jobseeker.setDob(dob);
+            jobseeker.setGender(gender);
+            jobseeker.setCountry(country);
+            jobseeker.setState(state);
+            jobseeker.setCity(city);
+            jobseeker.setContact(contact);
+            jobseeker.setQualification(qualification);
+            jobseeker.setCourse(course);
+            jobseeker.setSpecialization(specialization);
+            jobseeker.setCollege(college);
+            jobseeker.setSchool(school);
+            jobseeker.setPassing_year(passing_year);
+            jobseeker.setExperience(experience);
+            jobseeker.setSkills(skills);
+            jobseeker.setAchievements(achievements);
+                    
+            
+            com.daos.JsDao js = new com.daos.JsDao();
+            if (js.updateProfile(jobseeker,jsid)) {
+                session.setAttribute("jobseeker",jobseeker);
+             
+                response.sendRedirect("jobseeker/Profile.jsp");
+               } 
+                 
+        }
+        
+        
+        
          if(op!=null&op.equals("changePass"))
          {
             

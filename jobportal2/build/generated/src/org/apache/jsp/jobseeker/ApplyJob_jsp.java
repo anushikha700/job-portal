@@ -63,36 +63,49 @@ public final class ApplyJob_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "base.jsp", out, false);
       out.write("\n");
+      out.write("     \n");
+      out.write("   \n");
       out.write("    <style>\n");
-      out.write(".bt {\n");
-      out.write("  border: 2px solid black;\n");
-      out.write("  background-color: white;\n");
-      out.write("  color: black;\n");
-      out.write("  padding: 9px 25px;\n");
-      out.write("  font-size: 16px;\n");
-      out.write("  cursor: pointer;\n");
-      out.write("}\n");
+      out.write("        .bt {\n");
+      out.write("            border: 2px solid black;\n");
+      out.write("            background-color: white;\n");
+      out.write("            color: black;\n");
+      out.write("            padding: 9px 25px;\n");
+      out.write("            font-size: 16px;\n");
+      out.write("            cursor: pointer;\n");
+      out.write("        }\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("/* Blue */\n");
-      out.write(".info {\n");
-      out.write("  border-color: #41b3f9 ;\n");
-      out.write("  color: dodgerblue;\n");
-      out.write("}\n");
+      out.write("        /* Blue */\n");
+      out.write("        .info {\n");
+      out.write("            border-color: #41b3f9 ;\n");
+      out.write("            color: dodgerblue;\n");
+      out.write("        }\n");
       out.write("\n");
-      out.write(".info:hover {\n");
-      out.write("  background: #41b3f9 ;\n");
-      out.write("  color: white;\n");
-      out.write("}\n");
+      out.write("        .info:hover {\n");
+      out.write("            background: #41b3f9 ;\n");
+      out.write("            color: white;\n");
+      out.write("        }\n");
       out.write("\n");
-      out.write(".h {\n");
-      out.write("    display: inline-block; /* show on the same line */\n");
-      out.write("    padding-right: 5px; /* small gap on the right of each header */\n");
-      out.write("  }\n");
+      out.write("        .h {\n");
+      out.write("            display: inline-block; /* show on the same line */\n");
+      out.write("            padding-right: 5px; /* small gap on the right of each header */\n");
+      out.write("        }\n");
       out.write("\n");
+      out.write("        .alertcol{\n");
+      out.write("            color: #a94442;\n");
+      out.write("            background-color: #f2dede;\n");
+      out.write("            border-color: #ebccd1;\n");
+      out.write("        }\n");
+      out.write("\n");
+      out.write("        .textarea1{\n");
+      out.write("            white-space: pre-wrap;   /* for preserving space and line breaks*/\n");
+      out.write("            overflow-wrap: break-word;\n");
+      out.write("        }    \n");
       out.write("</style>\n");
-      out.write("    \n");
+      out.write("     \n");
+      out.write("\n");
       out.write("</head>\n");
       out.write("\n");
       out.write("<body class=\"fix-header\">\n");
@@ -140,23 +153,35 @@ public final class ApplyJob_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </div>\n");
       out.write("                    <!-- /.col-lg-12 -->\n");
       out.write("                </div>\n");
-      out.write("                 \n");
+      out.write("              ");
+      com.beans.Jobseeker jobseeker = null;
+      synchronized (session) {
+        jobseeker = (com.beans.Jobseeker) _jspx_page_context.getAttribute("jobseeker", PageContext.SESSION_SCOPE);
+        if (jobseeker == null){
+          jobseeker = new com.beans.Jobseeker();
+          _jspx_page_context.setAttribute("jobseeker", jobseeker, PageContext.SESSION_SCOPE);
+        }
+      }
+      out.write("   \n");
       out.write("            ");
 
-                int jid = Integer.parseInt(request.getParameter("jid"));
-                System.out.println("jid"+jid);
+                int jid=request.getParameter("jid")!=null?Integer.parseInt(request.getParameter("jid")):-1;
+               
                 JobDao jd = new JobDao();
                 Job job = jd.getById(jid);
                 int  cid=job.getCid();
                 String cname=jd.getCompanyName(cid);
                 String logo=jd.getCompanyLogo(cid);
+                int jsid=jobseeker.getJsid();
                 
                    
             
       out.write("\n");
       out.write("                \n");
+      out.write("             \n");
       out.write("                <div class=\"row\">\n");
       out.write("                    <div class=\"col-md-8\">\n");
+      out.write("                 \n");
       out.write("                        <div class=\"white-box\">\n");
       out.write("                            <h3 class=\"box-title h\">");
       out.print(job.getTitle());
@@ -165,8 +190,8 @@ public final class ApplyJob_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print(cname);
       out.write("</h4>\n");
       out.write("                            <br>\n");
-      out.write("                            <div class=\"col-md-8\">\n");
-      out.write("                            <table style=\"width:100%\">\n");
+      out.write("                            <div class=\"col-md-12\">\n");
+      out.write("                            <table style=\"width:80%\">\n");
       out.write("                                <tr>\n");
       out.write("                                    <td><i class=\"fas fa-briefcase fa-fw\"></i></td>\n");
       out.write("                                    <td>");
@@ -174,7 +199,7 @@ public final class ApplyJob_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write(" - ");
       out.print(job.getExper_max());
       out.write(" Years</td>\n");
-      out.write("                                    <td style=\"text-align:right\" rowspan=\"0\">&emsp;&emsp;<img src=\"../");
+      out.write("                                    <td style=\"text-align:right\" rowspan=\"0\">&emsp;<img src=\"../");
       out.print(logo);
       out.write("\" alt=\"Company Logo\" width=\"80\"></td>\n");
       out.write("                                </tr>    \n");
@@ -204,11 +229,22 @@ public final class ApplyJob_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                           \n");
       out.write("                            </div>\n");
       out.write("                             <br>\n");
-      out.write("                             \n");
+      out.write("                             <br>\n");
+      out.write("                             <br>\n");
+      out.write("                             <br>\n");
       out.write("                            <hr>\n");
       out.write("                            <b>Posted on:</b>&emsp;");
       out.print(job.getPosted_on());
-      out.write("&emsp;|&emsp;<b>Job Applicants:</b>&emsp;23&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a href=\"#\" class=\"bt info\">Apply</a><p>\n");
+      out.write("&emsp;|&emsp;<b>Job Applicants:</b>&emsp;23&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;\n");
+      out.write("                            <a href=\"../JobApplyController?op=verifyjob&jid=");
+      out.print(jid);
+      out.write("&jsid=");
+      out.print(jsid);
+      out.write("\" class=\"bt info\" ");
+ if (request.getParameter("apply") != null) {
+      out.write(" disabled=\"disabled\"");
+}
+      out.write(" >Apply</a><p>\n");
       out.write("                            \n");
       out.write("                            \n");
       out.write("                            \n");
@@ -216,9 +252,9 @@ public final class ApplyJob_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"white-box\">\n");
       out.write("                            \n");
       out.write("                            <h3>Job Description</h3><br>\n");
-      out.write("                            ");
+      out.write("                            <p class=\"textarea1\">");
       out.print(job.getDescription());
-      out.write("<br><br>\n");
+      out.write("</p><br><br>\n");
       out.write("                            \n");
       out.write("                            <table style=\"width:60%\">\n");
       out.write("\n");
@@ -255,9 +291,9 @@ public final class ApplyJob_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            \n");
       out.write("                            <br>\n");
       out.write("                           <h3>Education and Skills required</h3>\n");
-      out.write("                           ");
+      out.write("                           <p class=\"textarea1\">");
       out.print(job.getEducation_reqd());
-      out.write("\n");
+      out.write("</p>\n");
       out.write("                           \n");
       out.write("                           <h3>Company info</h3><br>\n");
       out.write("                           <table style=\"width:60%\">\n");
@@ -287,6 +323,23 @@ public final class ApplyJob_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                         \n");
       out.write("                            \n");
       out.write("                    </div>\n");
+      out.write("\n");
+      out.write("                    <div class=\"col-md-4\">\n");
+      out.write("                        <span id=\"s1\">\n");
+      out.write("                            ");
+ if (request.getParameter("msg") != null) {
+      out.write("\n");
+      out.write("                                    <div class=\"alert  alert-dismissible alertcol\">\n");
+      out.write("                                     <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n");
+      out.write("                                             ");
+
+                                                out.println(request.getParameter("msg"));
+                                             }
+      out.write("\n");
+      out.write("                                    </div>\n");
+      out.write("                        </span>\n");
+      out.write("                    </div>\n");
+      out.write("                                   \n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("            <!-- /.container-fluid -->\n");

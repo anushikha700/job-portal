@@ -71,12 +71,16 @@ public final class Profile_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            display: inline-block;\n");
       out.write("            font-weight: bold;\n");
       out.write("        } \n");
-      out.write("         \n");
+      out.write("\n");
       out.write("        .p1 {\n");
-      out.write("    display: inline-block; /* show on the same line */\n");
-      out.write("    margin: 15px; /* small gap on the right of each header */\n");
-      out.write("    font-size:15px ;\n");
-      out.write("  }\n");
+      out.write("            display: inline-block; /* show on the same line */\n");
+      out.write("            margin: 15px; /* small gap on the right of each header */\n");
+      out.write("            font-size:15px ;\n");
+      out.write("        }\n");
+      out.write("        .textarea1{\n");
+      out.write("            white-space: pre-wrap;   /* for preserving space and line breaks*/\n");
+      out.write("            overflow-wrap: break-word;\n");
+      out.write("        }\n");
       out.write("    </style>\n");
       out.write("</head>\n");
       out.write("\n");
@@ -288,7 +292,7 @@ if(jobseeker.experience!=null ){
       out.write("                                            <label class=\"l1\">Experience</label>\n");
       out.write("                                        </div>\n");
       out.write("                                        <div class=\"col-md-12\">\n");
-      out.write("                                            <p class=\"p1\">");
+      out.write("                                            <p class=\"p1 textarea1\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.experience}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</p>\n");
       out.write("                                        </div>\n");
@@ -304,7 +308,7 @@ if(jobseeker.skills!=null ){
       out.write("                                            <label class=\"l1\">Skills</label>\n");
       out.write("                                        </div>\n");
       out.write("                                        <div class=\"col-md-12\">\n");
-      out.write("                                            <p class=\"p1\">");
+      out.write("                                            <p class=\"p1 textarea1\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.skills}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</p>\n");
       out.write("                                        </div>\n");
@@ -320,7 +324,7 @@ if(jobseeker.achievements!=null ){
       out.write("                                            <label class=\"l1\">Achievements</label>\n");
       out.write("                                        </div>\n");
       out.write("                                        <div class=\"col-md-12\">\n");
-      out.write("                                            <p class=\"p1\">");
+      out.write("                                            <p class=\"p1 textarea1\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${jobseeker.achievements}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</p>\n");
       out.write("                                        </div>\n");
@@ -332,7 +336,7 @@ if(jobseeker.achievements!=null ){
 }
       out.write("\n");
       out.write("                                </div> \n");
-      out.write("                                <a href=\"#\" class=\"btn btn-success\">Update Profile</a>\n");
+      out.write("                                <a href=\"UpdateProfile.jsp\" class=\"btn btn-success\">Update Profile</a>\n");
       out.write("                            </form>\n");
       out.write("\n");
       out.write("                        </div>\n");

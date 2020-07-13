@@ -141,7 +141,7 @@
                                              <td>
 
                                                  
-                                                 <a href="../JobApplyController?op=#&jaid=<%=jaid%>&shortlist=approved&jid=<%=jid%>&title=<%=title%>"
+                                                 <a href="SendMail.jsp?jsid=<%=jobapply.getJsid()%>"
                                                    
                                                     class="btn btn btn-rounded btn-default btn-outline m-r-5">
                                                      <i class="ti-check text-success m-r-5"></i>Send Mail

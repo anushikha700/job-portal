@@ -116,6 +116,65 @@ public class JsDao {
     }
 
 
+     
+      public boolean updateProfile(Jobseeker jobseeker,int jsid)
+    {
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null) 
+       {
+           try{
+               String sql= "Update jobseeker set first_name=?,last_name=?,contact=?,dob=?,gender=?,country=?,state=?,city=?,school=?,qualification=?,college=?,course=?,specialization=?,passing_year=?,experience=?,skills=?,achievements=? where jsid=?";
+               PreparedStatement smt = con.prepareStatement(sql);
+               smt.setString(1,jobseeker.getFirst_name());
+               smt.setString(2,jobseeker.getLast_name());
+               smt.setString(3,jobseeker.getContact());
+               smt.setString(4,jobseeker.getDob());
+               smt.setString(5,jobseeker.getGender());
+               smt.setString(6,jobseeker.getCountry());
+               smt.setString(7,jobseeker.getState());
+               smt.setString(8,jobseeker.getCity());
+               smt.setString(9,jobseeker.getSchool());
+               
+               smt.setString(10,jobseeker.getQualification());
+               smt.setString(11,jobseeker.getCollege());
+               smt.setString(12,jobseeker.getCourse());
+               smt.setString(13,jobseeker.getSpecialization());
+               smt.setString(14,jobseeker.getPassing_year());
+               smt.setString(15,jobseeker.getExperience());
+               smt.setString(16,jobseeker.getSkills());
+               smt.setString(17,jobseeker.getAchievements());
+          
+               smt.setInt(18,jobseeker.getJsid());
+              
+              
+               
+              System.out.println("coutnry"+jobseeker.getCountry());
+              System.out.println("exper"+jobseeker.getExperience());
+               
+               
+               if(smt.executeUpdate()>0)
+               {
+                   status=true;
+                   
+               }
+               
+               
+               smt.close();
+               cp.putConnection(con);
+               
+           }
+           catch(Exception e){
+            System.out.println("Database Error :"+ e.getMessage());
+        }
+
+       }
+       return status;
+    }
+
+     
     public boolean  isEmailExist(String email){
        boolean status = false;
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -352,5 +411,28 @@ public class JsDao {
     return jobseekers;
    }
 
+      public String getEmail(int jsid){
+       String email=null;
+        ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select email from jobseeker where jsid=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, jsid);
+            ResultSet rs= smt.executeQuery();
+            if(rs.next()){
+                email=rs.getString("email");
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+       return email;
+   }  
 
 }

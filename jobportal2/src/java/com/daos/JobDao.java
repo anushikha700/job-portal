@@ -465,6 +465,51 @@ public class JobDao {
      }
    
      
+      //TO get job details using jid 
+    public ArrayList<Job>  getJobDetails(int jid){
+    
+       ArrayList<Job> jobs =new ArrayList<Job>();
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select * from job where jid=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, jid);
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+                Job  job =new Job();
+                job.setJid(rs.getInt("jid"));
+                job.setIndustry(rs.getString("industry"));
+                job.setTitle(rs.getString("title"));
+                job.setDescription(rs.getString("description"));
+                job.setVacancies(rs.getInt("vacancies"));
+                job.setSalary(rs.getString("salary"));
+                job.setCountry(rs.getString("country"));
+                job.setState(rs.getString("state"));
+                job.setCity(rs.getString("city"));
+                job.setApply_deadline(rs.getString("apply_deadline"));
+                job.setExper_min(rs.getInt("exper_min"));
+                job.setExper_max(rs.getInt("exper_max"));
+                job.setPosted_on(rs.getString("posted_on"));
+                job.setEducation_reqd(rs.getString("education_reqd"));
+                job.setContact_person(rs.getString("contact_person"));
+                job.setContact_no(rs.getString("contact_no"));
+                
+                jobs.add(job);
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return jobs;
+   }
+
+      
    
      
 }

@@ -217,16 +217,10 @@ if(listempty==true){
       out.write("                                             <td>\n");
       out.write("\n");
       out.write("                                                 \n");
-      out.write("                                                 <a href=\"../JobApplyController?op=#&jaid=");
-      out.print(jaid);
-      out.write("&shortlist=approved&jid=");
-      out.print(jid);
-      out.write("&title=");
-      out.print(title);
-      out.write("\"\n");
+      out.write("                                                 <a href=\"SendMail.jsp\"\n");
       out.write("                                                   \n");
       out.write("                                                    class=\"btn btn btn-rounded btn-default btn-outline m-r-5\">\n");
-      out.write("                                                     <i class=\"ti-check text-success m-r-5\"></i>  Approve\n");
+      out.write("                                                     <i class=\"ti-check text-success m-r-5\"></i>Send Mail\n");
       out.write("                                                 </a>\n");
       out.write("                                                    \n");
       out.write("                                                                                                \n");

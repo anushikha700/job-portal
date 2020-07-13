@@ -183,5 +183,76 @@ public class JobApplyDao {
    }
 
      
+   //To get jobs for which a Jobseeker applied
+      public ArrayList<JobApply>  getJobsApplied(int jsid){
+    
+       ArrayList<JobApply> jobapplies =new ArrayList<JobApply>();
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select * from job_apply where jsid=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, jsid);
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+                JobApply  jobapply =new JobApply();
+                jobapply.setJaid(rs.getInt("jaid"));
+                jobapply.setJid(rs.getInt("jid"));
+                jobapply.setJsid(rs.getInt("jsid"));
+               // jobapply.setResume(rs.getString("resume"));
+              //  jobapply.setApplicationDate(rs.getString("applicationDate"));
+                jobapplies.add(jobapply);
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return jobapplies;
+   }
+   
+   
+      public JobApply  getById(int jaid){
+      JobApply jobapply =null;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select * from job_apply where jaid=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setInt(1, jaid);
+            ResultSet rs= smt.executeQuery();
+            if(rs.next()){
+                jobapply =new JobApply();
+  
+                jobapply.setJaid(rs.getInt("jid"));
+                jobapply.setJid(rs.getInt("jid"));
+                jobapply.setJsid(rs.getInt("jsid"));
+                jobapply.setResume(rs.getString("resume"));
+                jobapply.setApplicationDate(rs.getString("applicationDate"));
+                jobapply.setShortlist(rs.getString("shortlist"));
+                
+                
+                
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return jobapply;
+   }
+
+      
+      
+      
+      
      
 }

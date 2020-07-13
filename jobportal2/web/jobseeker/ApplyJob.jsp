@@ -23,39 +23,43 @@
      
    
     <style>
-.bt {
-  border: 2px solid black;
-  background-color: white;
-  color: black;
-  padding: 9px 25px;
-  font-size: 16px;
-  cursor: pointer;
-}
+        .bt {
+            border: 2px solid black;
+            background-color: white;
+            color: black;
+            padding: 9px 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
 
 
-/* Blue */
-.info {
-  border-color: #41b3f9 ;
-  color: dodgerblue;
-}
+        /* Blue */
+        .info {
+            border-color: #41b3f9 ;
+            color: dodgerblue;
+        }
 
-.info:hover {
-  background: #41b3f9 ;
-  color: white;
-}
+        .info:hover {
+            background: #41b3f9 ;
+            color: white;
+        }
 
-.h {
-    display: inline-block; /* show on the same line */
-    padding-right: 5px; /* small gap on the right of each header */
-  }
+        .h {
+            display: inline-block; /* show on the same line */
+            padding-right: 5px; /* small gap on the right of each header */
+        }
 
- .alertcol{
-     color: #a94442;
-     background-color: #f2dede;
-     border-color: #ebccd1;
-       }
-  
+        .alertcol{
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .textarea1{
+            white-space: pre-wrap;   /* for preserving space and line breaks*/
+            overflow-wrap: break-word;
+        }    
 </style>
      
 
@@ -160,7 +164,7 @@
                         <div class="white-box">
                             
                             <h3>Job Description</h3><br>
-                            <%=job.getDescription()%><br><br>
+                            <p class="textarea1"><%=job.getDescription()%></p><br><br>
                             
                             <table style="width:60%">
 
@@ -189,7 +193,7 @@
                             
                             <br>
                            <h3>Education and Skills required</h3>
-                           <%=job.getEducation_reqd()%>
+                           <p class="textarea1"><%=job.getEducation_reqd()%></p>
                            
                            <h3>Company info</h3><br>
                            <table style="width:60%">

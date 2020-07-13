@@ -24,12 +24,16 @@
             display: inline-block;
             font-weight: bold;
         } 
-         
+
         .p1 {
-    display: inline-block; /* show on the same line */
-    margin: 15px; /* small gap on the right of each header */
-    font-size:15px ;
-  }
+            display: inline-block; /* show on the same line */
+            margin: 15px; /* small gap on the right of each header */
+            font-size:15px ;
+        }
+        .textarea1{
+            white-space: pre-wrap;   /* for preserving space and line breaks*/
+            overflow-wrap: break-word;
+        }
     </style>
 </head>
 
@@ -169,7 +173,7 @@
                                             <label class="l1">Experience</label>
                                         </div>
                                         <div class="col-md-12">
-                                            <p class="p1">${jobseeker.experience}</p>
+                                            <p class="p1 textarea1">${jobseeker.experience}</p>
                                         </div>
                                     </div>
                                      <%}%>  
@@ -179,7 +183,7 @@
                                             <label class="l1">Skills</label>
                                         </div>
                                         <div class="col-md-12">
-                                            <p class="p1">${jobseeker.skills}</p>
+                                            <p class="p1 textarea1">${jobseeker.skills}</p>
                                         </div>
                                     </div>
                                         <%}%>
@@ -189,13 +193,13 @@
                                             <label class="l1">Achievements</label>
                                         </div>
                                         <div class="col-md-12">
-                                            <p class="p1">${jobseeker.achievements}</p>
+                                            <p class="p1 textarea1">${jobseeker.achievements}</p>
                                         </div>
                                     </div>
                                         <%}%>
                                     <%}%>
                                 </div> 
-                                <a href="#" class="btn btn-success">Update Profile</a>
+                                <a href="UpdateProfile.jsp" class="btn btn-success">Update Profile</a>
                             </form>
 
                         </div>
